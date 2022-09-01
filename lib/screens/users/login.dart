@@ -305,8 +305,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         backgroundColor: kBlue,
                         onTap: () {
                           if (formKey.currentState!.validate()) {
-                            //HttpServices().login(context);
-                            Get.to(const HomeScreen());
+                            HttpServices().login(context);
+                            //Get.to(const HomeScreen());
                           }
                         },
                       ),
