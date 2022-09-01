@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       drawer: const SideBarMobile(),
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Home Pages"),
       ),
       body: const Dashboard(),
     );
