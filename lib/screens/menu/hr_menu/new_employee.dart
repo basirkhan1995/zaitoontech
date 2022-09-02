@@ -163,7 +163,7 @@ class _NewEmployeeState extends State<NewEmployee> {
         ),
         Step(
           title: Text("Contract Details"),
-          content: Text("Contact Details"),
+          content: Text("Contact"),
           isActive: _currentStep >= 1,
           state: _currentStep > 1 ? StepState.complete : StepState.indexed,
         ),
