@@ -218,11 +218,10 @@ class _SideBarState extends State<SideBar> {
                                     leading: const Icon(
                                         Icons.power_settings_new_outlined,
                                         color: kBlue),
-                                    trailing: const Text(
-                                      "ZAITOON",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold),
-                                    ),
+                                    trailing: SizedBox(
+                                        height: 50,
+                                        width: 50,
+                                        child: Image.asset('assets/zaitoonLogo.jpg')),
                                     onTap: () {
                                       controller.logout();
                                       Navigator.of(context).pushAndRemoveUntil(

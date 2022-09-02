@@ -91,8 +91,8 @@ class _ExpansionMenuState extends State<ExpansionMenu>
                   child: ScaleTransition(scale: anim, child: child),
                 ),
             child: _currIndex == 0
-                ? const Icon(Icons.arrow_forward_ios, size: 11, key: ValueKey('icon1'))
-                : const Icon(Icons.close_sharp, size: 12,
+                ? const Icon(Icons.keyboard_arrow_down, size: 20, key: ValueKey('icon1'))
+                : const Icon(Icons.close_sharp, size: 18,
                     key: ValueKey('icon2'), color: kBlue)),
         //trailing: !isExpanded? const Icon(Icons.keyboard_arrow_down): const Icon(Icons.arrow_forward_ios_outlined,size: 15,),
         children: widget.children!,
