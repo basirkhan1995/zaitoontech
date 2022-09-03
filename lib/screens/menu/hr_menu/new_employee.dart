@@ -24,6 +24,21 @@ class _NewEmployeeState extends State<NewEmployee> {
   final _userName = TextEditingController();
   final _userPassword = TextEditingController();
   final _confirmPassword = TextEditingController();
+
+  DateTime start = DateTime(2022, 12, 24);
+  DateTime end = DateTime(2022, 12, 24);
+  Future<DateTime?> startDate() => showDatePicker(
+      context: context,
+      initialDate: end,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100));
+
+  Future<DateTime?> endDate() => showDatePicker(
+      context: context,
+      initialDate: start,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100));
+
   final controller = Get.put(XController());
   int _currentStep = 0;
   List<Step> getSteps() => [
@@ -47,7 +62,6 @@ class _NewEmployeeState extends State<NewEmployee> {
                             "personal_info",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ).tr(),
-                          subtitle: const Text("personal_title_msg").tr(),
                         ),
                         const SizedBox(height: 10),
                         Row(children: [
@@ -87,9 +101,20 @@ class _NewEmployeeState extends State<NewEmployee> {
                           height: 45,
                           width: .9,
                           hint: "phone",
-                          prefixIcon: Icons.person,
+                          prefixIcon: Icons.call,
                           validator: (value) =>
                               controller.inputFieldValidator(value, "phone"),
+                        ),
+                        InputField(
+                          inputAction: TextInputAction.next,
+                          controller: _userName,
+                          radius: 8,
+                          height: 45,
+                          width: .8,
+                          hint: "email",
+                          prefixIcon: Icons.email,
+                          validator: (value) =>
+                              controller.emailValidator(value),
                         ),
                         InputField(
                           inputAction: TextInputAction.next,
@@ -162,8 +187,70 @@ class _NewEmployeeState extends State<NewEmployee> {
           state: _currentStep > 0 ? StepState.complete : StepState.indexed,
         ),
         Step(
-          title: Text("Contract Details"),
-          content: Text("Contact"),
+          title: const Text("Contract Details"),
+          content: Column(
+            children: [
+              const Text("contract_details"),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 0, vertical: 10),
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width * .95,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: kBlue.withOpacity(.03),
+                        ),
+                        child: ListTile(
+                          title:
+                              Text("${start.year}/${start.month}/${start.day}"),
+                          trailing: IconButton(
+                              onPressed: () async {
+                                final date = await startDate();
+                                if (date == null) return;
+                                setState(() => start = date);
+                              },
+                              icon:
+                                  const Icon(Icons.expand_circle_down_rounded)),
+                          leading: const Icon(Icons.date_range),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 0, vertical: 10),
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width * .95,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: kBlue.withOpacity(.03),
+                        ),
+                        child: ListTile(
+                          title: Text("${end.year}/${end.month}/${end.day}"),
+                          trailing: IconButton(
+                              onPressed: () async {
+                                final date = await endDate();
+                                if (date == null) return;
+                                setState(() => end = date);
+                              },
+                              icon:
+                                  const Icon(Icons.expand_circle_down_rounded)),
+                          leading: const Icon(Icons.date_range),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
           isActive: _currentStep >= 1,
           state: _currentStep > 1 ? StepState.complete : StepState.indexed,
         ),

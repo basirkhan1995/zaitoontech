@@ -58,8 +58,14 @@
   "stakeholders": "سهامدارن",
   "true": "فعاله",
   "false": "غیر فعال",
-  "currency": "اسعارو",
+  "currency": "نرخ اسعارو",
   "full_name": "نوم او تخلص",
   "job_title": "دندې",
-  "search_home": "لټون"
+  "search_home": "لټون",
+  "personal_info": "شخصی معلومات",
+  "current_password": "اوسنی رمز",
+  "new_password": "نوی رمز",
+  "confirm_password_msg": "رمز عبور بیا د ننه کری",
+  "password_not_matched": "پاسورډونه سره سمون نه خوري",
+  "update_password": "آپدیت کول"
 }

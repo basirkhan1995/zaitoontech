@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/components/methods/custom_tile.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';

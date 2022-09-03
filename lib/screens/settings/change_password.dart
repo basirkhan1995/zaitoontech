@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zaitoontech/components/methods/input_field.dart';
@@ -29,7 +30,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget changePassMobile(){
     return Scaffold(
         appBar: AppBar(
-          title: const Text("change_password"),
+          title: const Text("change_password").tr(),
         ),
         body: const Text("change password Mobile"));
   }
@@ -37,7 +38,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget changePassTablet(){
     return  Scaffold(
         appBar: AppBar(
-          title: const Text("change_password"),
+          title: const Text("change_password").tr(),
         ),
         body: Form(
           key: formKey,
@@ -81,7 +82,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     radius: 8,
                     width: .8,
                     height: 45,
-                    hint: "current password",
+                    hint: "current_password",
                     prefixIcon: Icons.lock,
                   ),
                 ),
@@ -124,10 +125,10 @@ class _ChangePasswordState extends State<ChangePassword> {
 
                     validator: (value){
                       if(value == null){
-                        return "confirm password is required";
+                        return tr("confirm_password_msg");
                       }
                       else if(_userPassword.text != _confirmPassword.text){
-                        return "password_not_matched";
+                        return tr("password_not_matched");
                       }
                       return null;
                     },

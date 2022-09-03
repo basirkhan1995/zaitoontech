@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:zaitoontech/components/methods/custom_tile.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
 import '../../components/colors/colors.dart';
 import '../../components/methods/app_header.dart';
@@ -21,6 +21,9 @@ class Currency extends StatelessWidget {
   Widget currencyTablet(){
     return  Scaffold(
         appBar: AppBar(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
+          ),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -32,38 +35,38 @@ class Currency extends StatelessWidget {
                   onPressed: (){}, icon: const Icon(Icons.edit,size: 20,)),
             )
           ],
-          title: const Text("currency"),
+          title: const Text("currency").tr(),
         ),
         body: Card(
           margin: const EdgeInsets.all(10),
           child: ListView(
-            children: [
-              const SizedBox(height: 10),
-              const ListTile(
+            children: const[
+                SizedBox(height: 10),
+                ListTile(
                 leading: Icon(Icons.attach_money),
                 title: Text("USD"),
                 trailing: Text("88.50"),
               ),
-             const Divider(endIndent: 10,indent: 10),
-              const ListTile(
+               Divider(endIndent: 10,indent: 10),
+                ListTile(
                 leading: Icon(Icons.currency_lira),
                 title: Text("Lira"),
                 trailing: Text("18.50"),
               ),
-              const Divider(endIndent: 10,indent: 10),
-              const ListTile(
+                Divider(endIndent: 10,indent: 10),
+                ListTile(
                 leading: Icon(Icons.currency_rupee),
                 title: Text("Rupee"),
                 trailing: Text("400.30"),
               ),
-              const Divider(endIndent: 10,indent: 10),
-              const ListTile(
+                Divider(endIndent: 10,indent: 10),
+                ListTile(
                 leading: Icon(Icons.currency_yen_sharp),
                 title: Text("Yen"),
                 trailing: Text("22.50"),
               ),
-              const Divider(endIndent: 10,indent: 10),
-              const ListTile(
+                Divider(endIndent: 10,indent: 10),
+                ListTile(
                 leading: Icon(Icons.currency_pound),
                 title: Text("Pound"),
                 trailing: Text("98.50"),

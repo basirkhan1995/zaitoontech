@@ -244,17 +244,20 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(blurRadius: 5, spreadRadius: 0, offset: Offset(0, 1))
               ], color: kWhite, borderRadius: BorderRadius.circular(10)),
-              height: MediaQuery.of(context).size.height * .6,
+              height: MediaQuery.of(context).size.height * .7,
               width: 400,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.only(right: 20,left: 20, top: 10, bottom: 10),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(height: 30),
+                      SizedBox(
+                        width: 120,
+                          height: 120,
+                          child: Image.asset('assets/zaitoonLogo.jpg')),
                       ListTile(
                         title: const Text(
                           "login_title",
@@ -262,7 +265,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ).tr(),
                         subtitle: const Text("Enter your credential details to access Zaitoon"),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 5),
                       InputField(
                         controller: Env.uName,
                         radius: 8,
@@ -305,8 +308,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         backgroundColor: kBlue,
                         onTap: () {
                           if (formKey.currentState!.validate()) {
-                            HttpServices().login(context);
-                            //Get.to(const HomeScreen());
+                            //HttpServices().login(context);
+                            Get.to(const HomeScreen());
                           }
                         },
                       ),

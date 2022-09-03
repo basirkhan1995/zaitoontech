@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:zaitoontech/components/colors/colors.dart';
 import 'package:zaitoontech/components/methods/app_header.dart';
-import 'package:zaitoontech/components/methods/custom_tile.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
 import '../../components/function_methods/env.dart';
 import '../../services/jsonModel/shippingModel.dart';
@@ -50,34 +48,15 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       body: Column(
         children: [
-             AppHeader(title: "dashboard",leadingIcon: Icons.home_rounded, searchHint: tr("search_home"),
-             onSearch: (){
+             AppHeader(
+               title: "dashboard",leadingIcon: Icons.home_rounded, searchHint: tr("search_home"),
+               onSearch: (){
                setState(() {
                  Env.searchOn = true;
                });
              },
              ),
              const SizedBox(height: 10),
-             Expanded(
-               child: Padding(
-                 padding: const EdgeInsets.all(8),
-                 child: ListView.builder(
-                   controller: controller,
-                     physics: const AlwaysScrollableScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: settings.length,
-                 itemBuilder: (context, index){
-                   final controller = settings[index];
-                  return CustomTile(
-                      leading: Icons.access_time_filled ,
-                      title: controller.title,
-                  subTitle: controller.subtitle,
-                  );
-
-                 }),
-               ),
-             ),
-
 
           // FutureBuilder(
           //   future: myFuture,
@@ -171,4 +150,7 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
+
 }
+
+

@@ -10,7 +10,6 @@ import 'package:zaitoontech/screens/settings/contact_us.dart';
 import 'package:zaitoontech/screens/settings/currency.dart';
 import 'package:zaitoontech/screens/settings/privacy.dart';
 import 'package:zaitoontech/screens/settings/profile_settings.dart';
-import '../../components/colors/colors.dart';
 import '../../components/function_methods/env.dart';
 import '../../components/methods/app_header.dart';
 import '../../components/methods/menu_screens.dart';

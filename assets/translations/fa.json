@@ -61,5 +61,11 @@
   "currency": "نرخ اسعار",
   "full_name": "نام و تخلص",
   "job_title": "وظیفه",
-  "search_home": "جستجو"
+  "search_home": "جستجو",
+  "personal_info": "معلومات شخصی",
+  "current_password": "رمز عبور فعلی",
+  "new_password": "رمز عبور جدید",
+  "confirm_password_msg": "رمز عبور را دوباره وارید نمایید",
+  "password_not_matched": "رمز عبور همخوانی ندارد",
+  "update_password": "بروزرسانی"
 }
