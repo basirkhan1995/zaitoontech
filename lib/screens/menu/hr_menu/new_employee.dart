@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:zaitoontech/components/colors/colors.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
+import 'package:zaitoontech/services/jsonModel/usersModel.dart';
+import 'package:zaitoontech/services/localDB/local_db.dart';
 import '../../../components/getX_controllers/xController.dart';
 import '../../../components/methods/app_header.dart';
 import '../../../components/methods/input_field.dart';
@@ -20,6 +22,7 @@ class _NewEmployeeState extends State<NewEmployee> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final _firstName = TextEditingController();
   final _lastName = TextEditingController();
+  final _email = TextEditingController();
   final _cellPhone = TextEditingController();
   final _userName = TextEditingController();
   final _userPassword = TextEditingController();
@@ -107,7 +110,7 @@ class _NewEmployeeState extends State<NewEmployee> {
                         ),
                         InputField(
                           inputAction: TextInputAction.next,
-                          controller: _userName,
+                          controller: _email,
                           radius: 8,
                           height: 45,
                           width: .8,
@@ -412,11 +415,19 @@ class _NewEmployeeState extends State<NewEmployee> {
                   return Row(
                     children: <Widget>[
                       TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (formKey.currentState!.validate()) {
-                            final isLastStep =
-                                _currentStep == getSteps().length - 1;
-                            if (isLastStep) {
+                            await DBHelper.createUser(
+                                UserModel(
+                                    usrName: _userName.text,
+                                    usrPass: _userPassword.text,
+                                    usrEmail: _email.text,
+                                    usrFirstName: _firstName.text,
+                                    usrLastName: _lastName.text,
+                                    usrPhone: _cellPhone.text)
+                            ).then((value) => debugPrint('user Created successfully'));
+                            final isLastStep = _currentStep == getSteps().length - 1;
+                            if (isLastStep){
                             } else {
                               setState(() {
                                 _currentStep += 1;

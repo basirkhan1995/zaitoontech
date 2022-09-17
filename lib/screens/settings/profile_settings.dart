@@ -4,16 +4,15 @@ import 'package:get/get.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/components/methods/custom_tile.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
-
 import '../../components/colors/colors.dart';
-import '../../components/methods/app_header.dart';
+
 
 class UserProfile extends StatelessWidget {
   const UserProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ScreenLayout(mobile: userProfileMobile(), tablet: userProfileTablet(), desktop: userProfileDesktop());
+    return ScreenLayout(mobile: userProfileMobile(), tablet: userProfileDesktop(), desktop: userProfileDesktop());
   }
   Widget userProfileMobile(){
     final controller = Get.put(XController());
@@ -97,7 +96,9 @@ class UserProfile extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
+
             shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.blueGrey.shade100),
                 borderRadius: BorderRadius.circular(10)
             ),
             child: Column(
@@ -124,6 +125,12 @@ class UserProfile extends StatelessWidget {
                   trailing: Icons.info,
                 ),
                 CustomTile(
+                  title: "company_name",
+                  subTitle: controller.companyName,
+                  leading: Icons.comment_bank_rounded,
+                  trailing: Icons.info,
+                ),
+                CustomTile(
                   title: "email",
                   subTitle: controller.email,
                   leading: Icons.email,
@@ -135,9 +142,9 @@ class UserProfile extends StatelessWidget {
                   leading: Icons.call,
                   trailing: Icons.info,
                 ),
-                const CustomTile(
+                  CustomTile(
                   title: "job_title",
-                  subTitle: "General Manager",
+                  subTitle: controller.userRole,
                   leading: Icons.tips_and_updates_sharp,
                   trailing: Icons.info,
                 ),
@@ -148,10 +155,89 @@ class UserProfile extends StatelessWidget {
         ));
   }
   Widget userProfileDesktop(){
-    return Scaffold(body: Column(
-      children: const [
-        AppHeader(title: "user_profile",leadingIcon: Icons.arrow_back_ios_new_outlined,routeIndex: 5),
-        Text("user profile desktop"),
+    final controller = Get.put(XController());
+    return Scaffold(
+        appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  splashRadius: 20,
+                  splashColor: kGrey,
+                  focusColor: kGrey,
+                  hoverColor: kGrey.withOpacity(.7),
+                  onPressed: (){}, icon: const Icon(Icons.edit,size: 20,)),
+            )
+          ],
+          leading: const Icon(Icons.account_circle),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
+          ),
+          title: const Text("profile",style: TextStyle(fontSize: 16)).tr(),
+        ),
+        body: Column(
+      children:   [
+
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.blueGrey.shade100),
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height:10),
+                  const CircleAvatar(
+                    backgroundColor: kBlue,
+                    radius: 65,
+                    child: CircleAvatar(
+                      radius: 63,
+                      backgroundImage: AssetImage('assets/ghufran.jpg'),
+                    ),
+                  ),
+                  Text("${controller.firstName} ${controller.lastName}",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+                  Text(controller.email),
+                  Text(controller.userRole).tr(),
+                  CustomTile(
+                    title: "full_name",
+                    subTitle: "${controller.firstName} ${controller.lastName}",
+                    leading: Icons.account_circle,
+                    trailing: Icons.info,
+                  ),
+                  CustomTile(
+                    title: "company_name",
+                    subTitle: controller.companyName,
+                    leading: Icons.comment_bank_rounded,
+                    trailing: Icons.info,
+                  ),
+                  CustomTile(
+                    title: "email",
+                    subTitle: controller.email,
+                    leading: Icons.email,
+                    trailing: Icons.info,
+                  ),
+                  CustomTile(
+                    title: "phone",
+                    subTitle: controller.phone,
+                    leading: Icons.call,
+                    trailing: Icons.info,
+                  ),
+                  CustomTile(
+                    title: "job_title",
+                    subTitle: controller.userRole,
+                    leading: Icons.tips_and_updates_sharp,
+                    trailing: Icons.info,
+                  ),
+
+                ],
+              ),
+            ),
+          ),
+        )
       ],
     ));
   }

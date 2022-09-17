@@ -76,14 +76,14 @@ class _InputFieldState extends State<InputField> {
             counterText: '',
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.radius!),
-                borderSide: const BorderSide(color: kBlue,width: 1.5)
+                borderSide:  BorderSide(color: Colors.grey.shade900,width: 1)
             ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.radius!),
-                borderSide: const BorderSide(color: kBlue,width: 2)),
+                borderSide: const BorderSide(color: kBlue,width: 1.5)),
             focusedErrorBorder: UnderlineInputBorder(
               //borderRadius: BorderRadius.circular(widget.radius!),
-              borderSide: BorderSide(color: Colors.red.shade900,width: 2),
+              borderSide: BorderSide(color: Colors.red.shade900,width: 1.5),
             ),
             errorBorder: UnderlineInputBorder(
               //borderRadius: BorderRadius.circular(widget.radius!),

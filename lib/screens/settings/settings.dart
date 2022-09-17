@@ -33,6 +33,7 @@ class _SettingsState extends State<Settings> {
     super.initState();
   }
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController2 = ScrollController();
   @override
   Widget build(BuildContext context) {
     return ScreenLayout(
@@ -45,21 +46,10 @@ class _SettingsState extends State<Settings> {
     //final controller = Get.put(XController());
     return Scaffold(
       body: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: [
-           AppHeader(title: "settings",leadingIcon: Icons.settings,routeIndex: 5,
-                searchHint: "search_setting",
-             onSearch: (){
-               setState(() {
-                 Env.searchOn = true;
-               });
-             },
-                onChanged: (value){
-                     setState(() {
-
-                     });
-                },
-            ),
+            const AppHeader(leadingIcon: Icons.settings,title: "settings"),
             const SizedBox(height: 5),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +69,7 @@ class _SettingsState extends State<Settings> {
                         children: [
                           CustomCard(
                             title: "profile",
-                            leading: Icons.account_circle,
+                            leading: const Icon(Icons.account_circle),
                             subtitle: "account_info",
                             onTap: () {
                               controller.subMenuExtended = !controller.subMenuExtended;
@@ -87,13 +77,22 @@ class _SettingsState extends State<Settings> {
                             }
                           ),
                           CustomCard(
+                              title: "company_info",
+                              leading: Image.asset('assets/appIcon/company.png'),
+                              subtitle: "account_info",
+                              onTap: () {
+                                controller.subMenuExtended = !controller.subMenuExtended;
+                                controller.setSubRoute(50);
+                              }
+                          ),
+                          CustomCard(
                             title: "language",
-                            leading: Icons.language,
+                            leading: const Icon(Icons.language),
                             subtitle: Get.locale.toString(),
                             onTap: () => Env.selectLanguageDialog(context,VoidCallback),
                           ),
                           CustomCard(
-                            leading: Icons.lock,
+                            leading: const Icon(Icons.lock),
                             title: "privacy_settings",
                             subtitle: "role_management",
                             onTap: () {
@@ -102,7 +101,7 @@ class _SettingsState extends State<Settings> {
                             }
                           ),
                           CustomCard(
-                            leading: Icons.security,
+                            leading: const Icon(Icons.security),
                             title: "security",
                             subtitle: "change_password",
                             onTap: (){
@@ -111,7 +110,7 @@ class _SettingsState extends State<Settings> {
                             }
                           ),
                           CustomCard(
-                              leading: Icons.monetization_on,
+                              leading: const Icon(Icons.monetization_on),
                               title: "currency",
                               subtitle: "currency",
                               onTap: (){
@@ -121,7 +120,7 @@ class _SettingsState extends State<Settings> {
                           ),
                           CustomCard(
                             title: "contact_us",
-                            leading: Icons.help,
+                            leading: const Icon(Icons.help),
                             subtitle: "contact",
                             onTap: () {
                               controller.subMenuExtended = !controller.subMenuExtended;
@@ -130,13 +129,14 @@ class _SettingsState extends State<Settings> {
                           ),
                           CustomCard(
                             title: "about",
-                            leading: Icons.info,
+                            leading: const Icon(Icons.info),
                             subtitle: "app_info",
                             onTap: (){
                               controller.subMenuExtended = !controller.subMenuExtended;
                               controller.setSubRoute(55);
                             },
                           ),
+
                           //
 
 
@@ -145,15 +145,23 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                 ),
-                 Expanded(
-                   flex: controller.subMenuExtended? 2 : 0,
+                //ُSub Display Window
+                Expanded(
+                   flex: 2,
                    child: GetBuilder<XController>(
-                    builder: (context) {
+                   builder: (context) {
                       return AnimatedContainer(
-                         duration: const Duration(milliseconds: 500),
-                        width: controller.subMenuExtended ? maxWidth : minWidth,
-                        height: 620,
-                         child: MenuScreens(id: controller.subMenuExtended? controller.subMenuID : 100),
+                        duration: const Duration(milliseconds: 100),
+                        width: maxWidth,
+                        height: 1080,
+                        child: SingleChildScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          controller: _scrollController2,
+                          child: SizedBox(
+                            height: 700,
+                              child: MenuScreens(id:controller.subMenuID)),
+                        ),
                       );
                     }
                 ),
@@ -177,19 +185,19 @@ class _SettingsState extends State<Settings> {
               const SizedBox(height: 5),
                CustomCard(
                 title: "profile",
-                leading: Icons.account_circle,
+                leading: const Icon(Icons.account_circle),
                 subtitle: "account_info",
                 onTap: () => Get.to(const UserProfile()),
               ),
               CustomCard(
                 title: "language",
-                leading: Icons.language,
+                leading: const Icon(Icons.language),
                 subtitle: context.locale.toString(),
                 onTap: () => Env.selectLanguageDialog(context,VoidCallback),
               ),
               GetBuilder<XController>(builder: (context) {
                 return CustomCard(
-                  leading: Icons.privacy_tip,
+                  leading: const Icon(Icons.privacy_tip),
                   title: "privacy_settings",
                   subtitle: "role_management",
                   onTap: () => Get.to(const PrivacySettings()),
@@ -197,27 +205,27 @@ class _SettingsState extends State<Settings> {
               }),
               GetBuilder<XController>(builder: (context) {
                 return CustomCard(
-                  leading: Icons.security,
+                  leading: const Icon(Icons.security),
                   title: "security",
                   subtitle: "change_password",
                   onTap: () => Get.to(const ChangePassword()),
                 );
               }),
               CustomCard(
-                  leading: Icons.monetization_on,
+                  leading: const Icon(Icons.monetization_on),
                   title: "currency",
                   subtitle: "currency",
                   onTap: ()=> Get.to(const Currency()),
               ),
                 CustomCard(
                 title: "contact_us",
-                leading: Icons.help,
+                leading: const Icon(Icons.help),
                 subtitle: "contact",
                   onTap: () => Get.to(const ContactUs()),
               ),
                 CustomCard(
                 title: "about",
-                leading: Icons.info,
+                leading: const Icon(Icons.info),
                 subtitle: "app_info",
                   onTap: () => Get.to(const AboutApp()),
               ),
@@ -237,20 +245,20 @@ class _SettingsState extends State<Settings> {
               const SizedBox(height: 5),
                 CustomCard(
                 title: "profile",
-                leading: Icons.account_circle,
+                leading: const Icon(Icons.account_circle),
                 subtitle: "account_info",
                 onTap: ()=> Get.to(const UserProfile()),
               ),
               CustomCard(
                   title: "language",
-                  leading: Icons.language,
+                  leading: const Icon(Icons.language),
                   subtitle: context.locale.toString(),
                   onTap: () {
                     Env.selectLanguageDialog(context,VoidCallback);
                   }),
 
                  CustomCard(
-                  leading: Icons.privacy_tip,
+                  leading: const Icon(Icons.privacy_tip),
                   title: "privacy_settings",
                   subtitle: "role_management",
                   onTap: ()=> Get.to(const PrivacySettings()),
@@ -258,25 +266,25 @@ class _SettingsState extends State<Settings> {
 
               CustomCard(
                 title: "security",
-                leading: Icons.security,
+                leading: const Icon(Icons.security),
                 subtitle: "change_password",
                 onTap: ()=> Get.to(const ChangePassword()),
               ),
               CustomCard(
-                  leading: Icons.monetization_on,
+                  leading: const Icon(Icons.monetization_on),
                   title: "currency",
                   subtitle: "currency",
                 onTap: ()=> Get.to(const Currency()),
               ),
               CustomCard(
                 title: "contact_us",
-                leading: Icons.help,
+                leading: const Icon(Icons.help),
                 subtitle: "contact",
                 onTap: ()=> Get.to(const ContactUs()),
               ),
                 CustomCard(
                 title: "about",
-                leading: Icons.info,
+                leading: const Icon(Icons.info),
                 subtitle: "app_info",
                 onTap: ()=> Get.to(const AboutApp()),
               ),

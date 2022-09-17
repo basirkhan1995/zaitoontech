@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:zaitoontech/components/colors/colors.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
-import 'package:zaitoontech/screens/home_screen.dart';
+import 'package:zaitoontech/screens/home/home_screen.dart';
 import 'package:zaitoontech/screens/menu/finance.dart';
 import 'package:zaitoontech/screens/menu/hr_menu/new_employee.dart';
 import 'package:zaitoontech/screens/menu/hr_menu/salary_management.dart';
+import 'package:zaitoontech/screens/menu/hr_menu/stakeholders.dart';
 import 'package:zaitoontech/screens/menu/operation/deposit.dart';
 import 'package:zaitoontech/screens/menu/operation/stakeholders.dart';
 import 'package:zaitoontech/screens/menu/operation/withdraw.dart';
@@ -102,6 +103,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
                 Theme(data: ThemeData().copyWith( dividerColor: Colors.transparent,
                     hoverColor: kBlue.withOpacity(.06)),
                   child: ExpansionTile(
+                    tilePadding: const EdgeInsets.only(left:25, right: 25),
                     leading: const Icon(Icons.paid_rounded),
                     title: const Text( "finance"),
                     children: [
@@ -112,6 +114,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
                 Theme(data: ThemeData().copyWith( dividerColor: Colors.transparent,
                     hoverColor: kBlue.withOpacity(.06)),
                   child: ExpansionTile(
+                    tilePadding: const EdgeInsets.only(left:25, right: 25),
                     leading: const Icon(Icons.token_sharp),
                     title: const Text( "operation"),
                     children: [
@@ -124,18 +127,23 @@ class _SideBarMobileState extends State<SideBarMobile> {
                 Theme(data: ThemeData().copyWith( dividerColor: Colors.transparent,
                     hoverColor: kBlue.withOpacity(.06)),
                   child: ExpansionTile(
+                    tilePadding: const EdgeInsets.only(left:25, right: 25),
                     leading: const Icon(Icons.paid_rounded),
                     title: const Text( "hr"),
                     children: [
-                      tile("new_employee", Icons.person, 3, const NewEmployee()),
-                      tile("users", Icons.account_circle, 3, const Users()),
-                      tile("salary", Icons.paid, 3, const SalaryManagement()),
+                      tile("new_employee", Icons.person, 31, const NewEmployee()),
+                      tile("users", Icons.account_circle, 32, const Users()),
+                      tile("salary", Icons.paid, 33, const SalaryManagement()),
+                      tile("new_stake", Icons.circle_outlined, 34, const MyUsers()),
+                      tile("stakeholders", Icons.circle_outlined, 35, const StakeHolders()),
+                      tile("salary", Icons.circle_outlined, 36, const SalaryManagement()),
                     ],
                   ),
                 ),
                 Theme(data: ThemeData().copyWith( dividerColor: Colors.transparent,
                     hoverColor: kBlue.withOpacity(.06)),
                   child: ExpansionTile(
+                    tilePadding: const EdgeInsets.only(left:25, right: 25),
                     leading: const Icon(Icons.fire_truck),
                     title: const Text( "transport"),
                     children: [
@@ -148,6 +156,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
                 Theme(data: ThemeData().copyWith( dividerColor: Colors.transparent,
                     hoverColor: kBlue.withOpacity(.06)),
                   child: ExpansionTile(
+                    tilePadding: const EdgeInsets.only(left:25, right: 25),
                     leading: const Icon(Icons.paid_rounded),
                     title: const Text( "reports"),
                     children: [
@@ -155,17 +164,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
                     ],
                   ),
                 ),
-                Theme(data: ThemeData().copyWith( dividerColor: Colors.transparent,
-                    hoverColor: kBlue.withOpacity(.06)),
-                  child: ExpansionTile(
-                    leading: const Icon(Icons.paid_rounded),
-                    title: const Text( "settings"),
-                    children: [
-                      tile("settings", Icons.settings, 5, const Settings()),
-                    ],
-                  ),
-                ),
-
+                tile("settings", Icons.settings, 5, const Settings()),
               ],
             ),
           ),

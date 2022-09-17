@@ -3,7 +3,7 @@ import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/components/methods/mobileSideMenu.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
 import 'package:zaitoontech/screens/menu/dashboard.dart';
-import 'package:zaitoontech/screens/sideBar.dart';
+import 'package:zaitoontech/screens/home/sideBar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

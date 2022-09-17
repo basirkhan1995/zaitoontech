@@ -10,10 +10,12 @@ class AppHeader extends StatefulWidget {
   final String? title;
   final IconData? leadingIcon;
   final int? routeIndex;
+  final double appHeight;
   final VoidCallback? onSearch;
+  final Color? backgroundColor;
   final String? searchHint;
   final ValueChanged<String>?onChanged;
-  const AppHeader({Key? key, this.title,this.searchHint = 'search', this.onSearch,this.onChanged, this.leadingIcon, this.routeIndex})
+  const AppHeader({Key? key,this.backgroundColor = Colors.white, this.appHeight = 55, this.title,this.searchHint = 'search', this.onSearch,this.onChanged, this.leadingIcon, this.routeIndex})
       : super(key: key);
 
   @override
@@ -31,21 +33,24 @@ class _AppHeaderState extends State<AppHeader> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      //scrollDirection: Axis.horizontal,
+      physics: const AlwaysScrollableScrollPhysics(),
+      // scrollDirection: Axis.horizontal,
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, left: 4.0, right: 8.0),
         child: Container(
-          decoration: BoxDecoration(boxShadow: [
+          decoration: BoxDecoration(
+           border: Border.all(color: Colors.blueGrey.shade100),
+              boxShadow: [
             BoxShadow(
                 offset: const Offset(0, 1),
                 blurRadius: 2,
                 color: Colors.black.withOpacity(0.3),
                 spreadRadius: 0),
-          ], color: kWhite, borderRadius: BorderRadius.circular(10)
+          ], color: widget.backgroundColor, borderRadius: BorderRadius.circular(10)
               //borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15)),
               ),
           width: MediaQuery.of(context).size.width,
-          height: 55,
+          height: widget.appHeight,
           child: Row(
             children: [
               const SizedBox(width: 8),
@@ -60,7 +65,7 @@ class _AppHeaderState extends State<AppHeader> {
                     ),
                     const SizedBox(width: 5),
                     Text(widget.title!,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                        style: const TextStyle(fontWeight: FontWeight.bold)).tr(),
                   ],
                 ),
               ),
@@ -94,7 +99,11 @@ class _AppHeaderState extends State<AppHeader> {
               child: Env.searchOn? Row(
                 mainAxisSize: MainAxisSize.min,
                 children:  [
-                   SizedBox(
+                   Container(
+                     decoration: BoxDecoration(
+                       color: kBlue.withOpacity(.08),
+                       borderRadius: BorderRadius.circular(20)
+                     ),
                      width: 300,
                      height: 40,
                      child: TextField(
@@ -119,6 +128,7 @@ class _AppHeaderState extends State<AppHeader> {
                    ),
                 ],
               ) : IconButton(
+                tooltip: tr("search"),
                 splashRadius: 20,
                 splashColor: kBlue.withOpacity(.05),
                 onPressed: widget.onSearch,
@@ -126,9 +136,55 @@ class _AppHeaderState extends State<AppHeader> {
               )
             ),
           ),
+          controller.menuID ==6? Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+            child: Material(
+              borderRadius: BorderRadius.circular(20),
+              child: IconButton(
+                tooltip: tr("add_product"),
+                splashRadius: 20,
+                splashColor: kBlue.withOpacity(.05),
+                onPressed: () {
+                  controller.setRoute(61);
+                },
+                icon: const Icon(Icons.add_circle_outlined),
+              ),
+            ),
+          ):const SizedBox(),
+         controller.menuID ==31? Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+            child: Material(
+              borderRadius: BorderRadius.circular(20),
+              child: IconButton(
+                tooltip: tr("add_user"),
+                splashRadius: 20,
+                splashColor: kBlue.withOpacity(.05),
+                onPressed: () {
+                  controller.setRoute(3);
+                },
+                icon: const Icon(Icons.add_circle_outlined),
+              ),
+            ),
+          ):const SizedBox(),
+          controller.menuID ==2? Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+            child: Material(
+              borderRadius: BorderRadius.circular(20),
+              child: IconButton(
+                tooltip: tr("add_stakeholder"),
+                splashRadius: 20,
+                splashColor: kBlue.withOpacity(.05),
+                onPressed: () {
+                  controller.setRoute(3);
+                },
+                icon: const Icon(Icons.add_circle),
+              ),
+            ),
+          ):const SizedBox(),
           Material(
             borderRadius: BorderRadius.circular(20),
             child: IconButton(
+              tooltip: tr('language'),
                 splashColor: kBlue.withOpacity(.05),
                 splashRadius: 20,
                 onPressed: () =>
@@ -141,6 +197,7 @@ class _AppHeaderState extends State<AppHeader> {
             child: Material(
               borderRadius: BorderRadius.circular(20),
               child: IconButton(
+                tooltip: tr('settings'),
                 splashRadius: 20,
                 splashColor: kBlue.withOpacity(.05),
                 onPressed: () {
@@ -155,6 +212,7 @@ class _AppHeaderState extends State<AppHeader> {
             child: Material(
               borderRadius: BorderRadius.circular(20),
               child: IconButton(
+                tooltip: tr('logout'),
                 splashRadius: 20,
                 splashColor: kBlue.withOpacity(.05),
                 onPressed: () => controller.logout(),
@@ -199,7 +257,7 @@ class _AppHeaderState extends State<AppHeader> {
                         ));
               },
               child: const CircleAvatar(
-                radius: 12,
+                radius: 13,
                 backgroundImage: AssetImage("assets/ghufran.jpg"),
               ),
             ),

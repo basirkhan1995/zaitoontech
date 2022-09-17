@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:zaitoontech/screens/users/login.dart';
 
 class XController extends GetxController {
 
@@ -129,6 +130,7 @@ class XController extends GetxController {
   logout(){
    isLoginSucceed = false;
    xStorage.write("rememberLogin", isLoginSucceed);
+   Get.to(()=> const LoginScreen());
   update();
   }
 

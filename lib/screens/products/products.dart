@@ -1,55 +1,52 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:zaitoontech/components/colors/colors.dart';
-import 'package:zaitoontech/components/getX_controllers/xController.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
-import 'package:zaitoontech/screens/menu/hr_menu/stakeholders.dart';
-import 'package:zaitoontech/services/jsonModel/usersModel.dart';
-import 'package:zaitoontech/services/localDB/local_db.dart';
-import '../../../components/function_methods/env.dart';
-import '../../../components/methods/app_header.dart';
-import '../../../searchable/users.dart';
+import '../../components/getX_controllers/xController.dart';
+import '../../components/methods/app_header.dart';
+import '../../searchable/users.dart';
 
-class Users extends StatefulWidget {
-  const Users({Key? key}) : super(key: key);
+class Products extends StatefulWidget {
+  const Products({Key? key}) : super(key: key);
 
   @override
-  State<Users> createState() => _UsersState();
+  State<Products> createState() => _ProductsState();
 }
 
-class _UsersState extends State<Users> {
+class _ProductsState extends State<Products> {
   final ScrollController _scrollController = ScrollController();
   final controller = Get.put(XController());
   final List<User> _users = [
     User(
-        'Elliana Palacios',
+        'Samsung TV',
         '@elliana',
         'https://images.unsplash.com/photo-1504735217152-b768bcab5ebc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=0ec8291c3fd2f774a365c8651210a18b',
         false),
     User(
-        'Kayley Dwyer',
+        'LG TV',
         '@kayley',
         'https://images.unsplash.com/photo-1503467913725-8484b65b0715?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=cf7f82093012c4789841f570933f88e3',
         false),
     User(
-        'Kathleen Mcdonough',
+        'Song TV',
         '@kathleen',
         'https://images.unsplash.com/photo-1507081323647-4d250478b919?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b717a6d0469694bbe6400e6bfe45a1da',
         false),
     User(
-        'Kathleen Dyer',
+        'Dish TV',
         '@kathleen',
         'https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=ddcb7ec744fc63472f2d9e19362aa387',
         false),
     User(
-        'Mikayla Marquez',
+        'Samsung Refrigerator',
         '@mikayla',
         'https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         false),
     User(
-        'Kiersten Lange',
+        'LG Vacuum Cleaner',
         '@kiersten',
         'https://images.unsplash.com/photo-1542534759-05f6c34a9e63?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         false),
@@ -94,129 +91,94 @@ class _UsersState extends State<Users> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenLayout(
-        mobile: usersMobile(), tablet: usersTablet(), desktop: usersDesktop());
+    return ScreenLayout(mobile: productsMobile(), tablet: productsTablet(), desktop: productsDesktop());
   }
 
-  Widget usersMobile() {
-    return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Get.to(()=> const MyUsers());
-          },
-          child: const Icon(Icons.add),
-        ),
-        appBar: AppBar(
-          title: const Text("users"),
-        ),
-        body:FutureBuilder<List<UserModel>>(
-            future: DBHelper.readUsers(),
-            builder:(BuildContext context, AsyncSnapshot <List<UserModel>>snapshot){
-              if(!snapshot.hasData){
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const[
-                      CircularProgressIndicator(),
-                      SizedBox(height: 10),
-                      Text("Loading...",style: TextStyle(color: kWhite),)
-                    ],
-                  ),
-                );
-              }
-              return snapshot.data!.isEmpty ? const Center(child: Text("No Data")):ListView(
-                children: snapshot.data!.map((user){
-                  return Center(
-                    child: ListTile(
-                      leading: const CircleAvatar(
-                        backgroundImage: AssetImage('assets/no_user.jpg'),
-                      ),
-                      title: Text(user.usrName.toString()),
-                      subtitle: Text(user.usrPass.toString()),
-                      trailing: IconButton(
-                        onPressed: (){
-                          DBHelper.deleteUsers(user.userId!);
-                        },
-                        icon: const Icon(Icons.delete),
-                      ),
-
-                    ),
-                  );
-
-                }).toList(),
-              );
-            }
-        ));
-  }
-
-  Widget usersTablet() {
+  Widget productsMobile(){
     return Scaffold(
         appBar: AppBar(
-          title: const Text("users"),
+          title: const Text("products").tr(),
         ),
-        body: const Text("Users Tablet"));
+        body: const Text("products Mobile"));
   }
 
-  Widget usersDesktop() {
+  Widget productsTablet(){
+    return  Scaffold(
+        appBar: AppBar(
+          leading: const Icon(Icons.shopping_cart),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          title: const Text("products").tr(),
+        ),
+        body: const Text("products Tablet"));
+  }
+
+  Widget productsDesktop(){
     return Scaffold(
         body: Column(
-      children: [
-        AppHeader(
-            searchHint: 'Search Users', onChanged: (value) => onSearch(value),
-            onSearch:(){ setState(() {
-             Env.searchOn = true;
-              });
-            },
-            title: "users",
-            leadingIcon: Icons.account_circle_rounded),
+          children: [
+            const AppHeader(title: "products",leadingIcon: Icons.shopping_cart),
 
-        Expanded(
-            child: Container(
-            margin: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade900,
-              borderRadius: BorderRadius.circular(14),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade900,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: _foundedUsers.isNotEmpty
+                    ? ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    controller: _scrollController,
+                    itemCount: _foundedUsers.length,
+                    itemBuilder: (context, index) {
+                      return Slidable(
+                        actionPane: const SlidableDrawerActionPane(),
+                        actionExtentRatio: 0.25,
+                        child: userComponent(user: _foundedUsers[index]),
+                        actions: <Widget>[
+                          IconSlideAction(
+                            caption: 'Archive',
+                            color: Colors.transparent,
+                            icon: Icons.archive,
+                            onTap: () => print("archive"),
+                          ),
+                          IconSlideAction(
+                            caption: 'Share',
+                            color: Colors.transparent,
+                            icon: Icons.share,
+                            onTap: () => print('Share'),
+                          ),
+                        ],
+                        secondaryActions: <Widget>[
+                          IconSlideAction(
+                            caption: 'More',
+                            color: Colors.transparent,
+                            icon: Icons.more_horiz,
+                            onTap: () => print('More'),
+                          ),
+                          IconSlideAction(
+                            caption: 'Delete',
+                            color: Colors.transparent,
+                            icon: Icons.delete,
+                            onTap: () => print('Delete'),
+                          ),
+                        ],
+                      );
+                    })
+                    : const Center(
+                    child: Text(
+                      "No users found",
+                      style: TextStyle(color: Colors.white),
+                    )),
+              ),
             ),
-            child: FutureBuilder<List<UserModel>>(
-                 future: DBHelper.readUsers(),
-                builder:(BuildContext context, AsyncSnapshot <List<UserModel>>snapshot){
-                   if(!snapshot.hasData){
-                     return Center(
-                       child: Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                         children: const[
-                          CircularProgressIndicator(),
-                           SizedBox(height: 10),
-                           Text("Loading...",style: TextStyle(color: kWhite),)
-                         ],
-                       ),
-                     );
-                   }
-              return snapshot.data!.isEmpty ? const Center(child: Text("No Data")):ListView(
-                children: snapshot.data!.map((user){
-                 return Center(
-                   child: ListTile(
-                     leading: Text(user.userId.toString()),
-                     title: Text(user.usrName.toString()),
-                     subtitle: Text(user.usrPass.toString()),
-                     trailing: IconButton(
-                       onPressed: (){
-                       //DBHelper.deleteUsers(user.userId?.toInt());
-                       },
-                       icon: const Icon(Icons.delete),
-                     ),
 
-                   ),
-                 );
 
-                }).toList(),
-              );
-                }
-            )
-          ),
-        ),
-      ],
-    ));
+          ],
+        ));
   }
 
   userComponent({required User user}) {
@@ -235,8 +197,8 @@ class _UsersState extends State<Users> {
                     child: CachedNetworkImage(
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) =>
-                              CircularProgressIndicator(
-                                  value: downloadProgress.progress),
+                          CircularProgressIndicator(
+                              value: downloadProgress.progress),
                       errorWidget: (context, url, error) =>
                           Image.asset('assets/no_user.jpg'),
                       imageUrl: user.image,
@@ -273,7 +235,7 @@ class _UsersState extends State<Users> {
                           : Colors.grey.shade700,
                     )),
                 child: Center(
-                    child: Text(user.isFollowedByMe ? 'Closed' : 'Active',
+                    child: Text(user.isFollowedByMe ? 'No Stock' : 'Active',
                         style: TextStyle(
                             color: user.isFollowedByMe
                                 ? Colors.white

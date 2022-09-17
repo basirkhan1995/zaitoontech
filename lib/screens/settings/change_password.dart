@@ -38,12 +38,17 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget changePassTablet(){
     return  Scaffold(
         appBar: AppBar(
+          leading: const Icon(Icons.lock),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          ),
           title: const Text("change_password").tr(),
         ),
         body: Form(
           key: formKey,
           child: Card(
             shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.blueGrey.shade100),
               borderRadius: BorderRadius.circular(10)
             ),
             margin: const EdgeInsets.all(10.0),

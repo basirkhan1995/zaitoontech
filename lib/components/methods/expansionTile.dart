@@ -28,8 +28,8 @@ class ExpansionMenu extends StatefulWidget {
       this.trailing,
       this.selectedItemColor = kBlue,
       this.unSelectedItemColor,
-      this.selectedIconSize = 30,
-      this.maxIconSize = 24,
+      this.selectedIconSize = 24,
+      this.maxIconSize = 22,
       this.minIconSize = 20,
       this.fontSize = 13})
       : super(key: key);
@@ -73,13 +73,13 @@ class _ExpansionMenuState extends State<ExpansionMenu>
         leading: Icon(
           widget.leading,
           size: isExpanded ? widget.maxIconSize : widget.minIconSize,
-          color: isExpanded ? kBlue : Colors.black.withOpacity(.6),
+          color: isExpanded ? Colors.grey: Colors.grey,
         ),
         //subtitle: Text(widget.subTitle!),
         title: Text(
           widget.title!,
           style: TextStyle(
-              color: isExpanded ? kBlue : Colors.black.withOpacity(.6),
+              color: isExpanded ? Colors.grey : Colors.grey,
               fontWeight: isExpanded ? FontWeight.w600 : FontWeight.w400,fontSize: 14),
         ).tr(),
         trailing: AnimatedSwitcher(
@@ -91,9 +91,9 @@ class _ExpansionMenuState extends State<ExpansionMenu>
                   child: ScaleTransition(scale: anim, child: child),
                 ),
             child: _currIndex == 0
-                ? const Icon(Icons.keyboard_arrow_down, size: 20, key: ValueKey('icon1'))
-                : const Icon(Icons.close_sharp, size: 18,
-                    key: ValueKey('icon2'), color: kBlue)),
+                ? Icon(Icons.keyboard_arrow_down, size: 20,color: Colors.grey.withOpacity(.25), key: const ValueKey('icon1'))
+                : Icon(Icons.close_sharp, size: 18,
+                    key: ValueKey('icon2'), color: Colors.grey.withOpacity(.25))),
         //trailing: !isExpanded? const Icon(Icons.keyboard_arrow_down): const Icon(Icons.arrow_forward_ios_outlined,size: 15,),
         children: widget.children!,
       ),

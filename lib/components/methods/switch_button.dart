@@ -18,6 +18,10 @@ class SwitchRole extends StatelessWidget {
       padding: const EdgeInsets.only(left: 6.0, right: 6),
       child: Card(
         shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: Colors.blueGrey.shade100
+          ),
           borderRadius: BorderRadius.circular(10)
         ),
         child: SwitchListTile(

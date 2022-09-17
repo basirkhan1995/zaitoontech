@@ -5,7 +5,7 @@ import 'package:zaitoontech/components/colors/colors.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/components/methods/input_field.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
-import 'package:zaitoontech/screens/home_screen.dart';
+import 'package:zaitoontech/screens/home/home_screen.dart';
 import 'package:zaitoontech/screens/users/signup.dart';
 import '../../components/function_methods/env.dart';
 import '../../components/methods/custom_button.dart';
@@ -98,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     if (formKey.currentState!.validate()) {
                       HttpServices().login(context);
+                      //Get.to(const HomeScreen());
                     }
                   },
                 ),
@@ -234,7 +235,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
   Widget loginDesktop(context) {
     return Scaffold(
       body: Form(
@@ -244,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(blurRadius: 5, spreadRadius: 0, offset: Offset(0, 1))
               ], color: kWhite, borderRadius: BorderRadius.circular(10)),
-              height: MediaQuery.of(context).size.height * .7,
+              height: 500,
               width: 400,
               child: Padding(
                 padding: const EdgeInsets.only(right: 20,left: 20, top: 10, bottom: 10),
@@ -257,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         width: 120,
                           height: 120,
-                          child: Image.asset('assets/zaitoonLogo.jpg')),
+                          child: Image.asset('assets/zLogo.png')),
                       ListTile(
                         title: const Text(
                           "login_title",

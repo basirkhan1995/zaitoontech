@@ -10,7 +10,7 @@ import '../../components/getX_controllers/xController.dart';
 import '../../components/methods/custom_button.dart';
 import '../../components/methods/input_field.dart';
 import '../../services/api_services.dart';
-import '../home_screen.dart';
+import '../home/home_screen.dart';
 
 class BusinessSignup extends StatefulWidget {
   const BusinessSignup({Key? key}) : super(key: key);

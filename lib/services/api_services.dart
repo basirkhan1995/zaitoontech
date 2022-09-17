@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/services/components/dialog_helper.dart';
 import '../components/function_methods/env.dart';
-import '../screens/home_screen.dart';
+import '../screens/home/home_screen.dart';
 import '../setting_search.dart';
 import 'components/base_client.dart';
 import 'components/error_handler.dart';

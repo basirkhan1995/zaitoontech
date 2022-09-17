@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:zaitoontech/screens/menu/hr_menu/new_employee.dart';
 import 'package:zaitoontech/screens/menu/hr_menu/salary_management.dart';
+import 'package:zaitoontech/screens/menu/hr_menu/stakeholders.dart';
 import 'package:zaitoontech/screens/menu/operation/deposit.dart';
 import 'package:zaitoontech/screens/menu/operation/stakeholders.dart';
 import 'package:zaitoontech/screens/menu/operation/withdraw.dart';
+import 'package:zaitoontech/screens/products/new_product.dart';
+import 'package:zaitoontech/screens/products/products.dart';
 import 'package:zaitoontech/screens/settings/about_app.dart';
 import 'package:zaitoontech/screens/settings/change_password.dart';
+import 'package:zaitoontech/screens/settings/company_info.dart';
 import 'package:zaitoontech/screens/settings/contact_us.dart';
 import 'package:zaitoontech/screens/settings/privacy.dart';
 import 'package:zaitoontech/screens/settings/profile_settings.dart';
@@ -45,6 +49,8 @@ class MenuScreens extends StatelessWidget {
         return const Users();
       case 32:
         return const SalaryManagement();
+      case 300:
+        return const MyUsers();
 
       //Reports Case
       case 4:
@@ -53,6 +59,8 @@ class MenuScreens extends StatelessWidget {
       //Setting Case
       case 5:
         return const Settings();
+      case 50:
+        return const CompanyInfo();
       case 51:
         return const UserProfile();
       case 52:
@@ -66,6 +74,13 @@ class MenuScreens extends StatelessWidget {
       case 56:
         return const Currency();
 
+        //Products
+      case 6:
+        return const Products();
+      case 61:
+        return const AddNewProduct();
+
+        //Empty Case
       case 100:
         return const SizedBox();
 

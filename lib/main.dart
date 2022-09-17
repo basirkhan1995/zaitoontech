@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:zaitoontech/components/colors/colors.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
-import 'package:zaitoontech/screens/home_screen.dart';
+import 'package:zaitoontech/screens/home/home_screen.dart';
 import 'package:zaitoontech/screens/users/login.dart';
 
 void main() async {
@@ -20,7 +20,7 @@ void main() async {
     systemNavigationBarIconBrightness: Brightness.dark,
     statusBarIconBrightness: Brightness.dark,
   ));
-  //   await WindowManager.instance.setFullScreen(true);
+  // await WindowManager.instance.setFullScreen(true);
   //   await WindowManager.instance.setFullScreen(false);
   runApp(EasyLocalization(
       supportedLocales: const [
@@ -34,6 +34,17 @@ void main() async {
       fallbackLocale: const Locale('en'),
       startLocale: const Locale('en'),
       child: const ZaitoonApp()));
+
+  // doWhenWindowReady(() {
+  //   const initialSize = Size(800, 650);
+  //   const minSize = Size(600, 450);
+  //   const maxSize = Size(1920, 1080);
+  //   appWindow.maxSize = maxSize;
+  //   appWindow.minSize = minSize;
+  //   appWindow.alignment = Alignment.center;
+  //   appWindow.size = initialSize; //default size
+  //   appWindow.show();
+  // });
 }
 
 class ZaitoonApp extends StatelessWidget {

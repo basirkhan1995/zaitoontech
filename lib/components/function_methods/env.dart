@@ -15,6 +15,7 @@ class Env {
   static final uName = TextEditingController();
   static final uPassword = TextEditingController();
   static final searchTextController = TextEditingController();
+  static final ScrollController scrollController = ScrollController();
   static bool searchOn = false;
   static int selectedIndex = 0;
   static jumpScreen(context, voidCallBack){
@@ -73,7 +74,7 @@ class Env {
             title: const Text("پشتو"),
             onTap: () {
                 languageCurrentIndex = index;
-                context.setLocale( const Locale('fa'));
+                context.setLocale( const Locale('ar'));
               Navigator.pop(context);
             },
           ),

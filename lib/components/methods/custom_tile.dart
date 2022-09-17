@@ -11,6 +11,8 @@ class CustomTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      dense: true,
+      visualDensity: const VisualDensity( vertical: -1),
       leading: Icon(leading),
       title: Text(title!,style: const TextStyle(fontWeight: FontWeight.w600),).tr(),
       subtitle: Text(subTitle!).tr(),
