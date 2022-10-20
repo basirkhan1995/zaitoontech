@@ -18,6 +18,7 @@ class CompanyInfo extends StatelessWidget {
     final controller = Get.put(XController());
     return Scaffold(
         appBar: AppBar(
+          leading: Image.asset('assets/appIcon/org.png',color: Colors.white),
           actions: [
             IconButton(onPressed: (){}, icon: const Icon(Icons.edit))
           ],
@@ -96,7 +97,6 @@ class CompanyInfo extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
-
             shape: RoundedRectangleBorder(
               side: BorderSide(color: Colors.blueGrey.shade100),
                 borderRadius: BorderRadius.circular(10)

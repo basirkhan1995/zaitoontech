@@ -28,19 +28,11 @@ class _ChangePasswordState extends State<ChangePassword> {
   }
 
   Widget changePassMobile(){
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("change_password").tr(),
-        ),
-        body: const Text("change password Mobile"));
-  }
-
-  Widget changePassTablet(){
     return  Scaffold(
         appBar: AppBar(
           leading: const Icon(Icons.lock),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
+              borderRadius: BorderRadius.circular(10)
           ),
           title: const Text("change_password").tr(),
         ),
@@ -48,8 +40,8 @@ class _ChangePasswordState extends State<ChangePassword> {
           key: formKey,
           child: Card(
             shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.blueGrey.shade100),
-              borderRadius: BorderRadius.circular(10)
+                side: BorderSide(color: Colors.blueGrey.shade100),
+                borderRadius: BorderRadius.circular(10)
             ),
             margin: const EdgeInsets.all(10.0),
             child: ListView(
@@ -167,13 +159,267 @@ class _ChangePasswordState extends State<ChangePassword> {
         ));
   }
 
+  Widget changePassTablet(){
+    return  Scaffold(
+        appBar: AppBar(
+          leading: const Icon(Icons.lock),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          ),
+          title: const Text("change_password").tr(),
+        ),
+        body: Form(
+          key: formKey,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.blueGrey.shade100),
+              borderRadius: BorderRadius.circular(10)
+            ),
+            margin: const EdgeInsets.all(10.0),
+            child: ListView(
+              padding: const EdgeInsets.only(left: 40,right: 40,top: 15),
+              children: [
+                const SizedBox(height: 15),
+                Center(
+                  child: Container(
+                    height: 160,
+                    width: 160,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: kBlue.withOpacity(.05),
+                    ),
+                    child: const Icon(Icons.lock,size: 120,color: kGrey,),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Obx(
+                      () => InputField(
+                    obscureText: controller.isInvisible.value,
+                    suffixIcon: IconButton(
+                      icon: !controller.isInvisible.value
+                          ? const Icon(Icons.visibility, color: kBlue)
+                          : const Icon(Icons.visibility_off,
+                          color: kBlue),
+                      onPressed: () {
+                        controller.isInvisible.value =
+                        !controller.isInvisible.value;
+                      },
+                    ),
+                    validator: (value) =>
+                        controller.inputFieldValidator(value!,'current_password'),
+                    controller: _userCurrentPassword,
+                    radius: 8,
+                    width: .8,
+                    height: 45,
+                    hint: "current_password",
+                    prefixIcon: Icons.lock,
+                  ),
+                ),
+                Obx(
+                      () => InputField(
+                    obscureText: controller.isInvisible.value,
+                    suffixIcon: IconButton(
+                      icon: !controller.isInvisible.value
+                          ? const Icon(Icons.visibility, color: kBlue)
+                          : const Icon(Icons.visibility_off,
+                          color: kBlue),
+                      onPressed: () {
+                        controller.isInvisible.value =
+                        !controller.isInvisible.value;
+                      },
+                    ),
+                    validator: (value) =>
+                        controller.passwordValidator(value!),
+                    controller: _userPassword,
+                    radius: 8,
+                    width: .8,
+                    height: 45,
+                    hint: "new_password",
+                    prefixIcon: Icons.lock,
+                  ),
+                ),
+                Obx(
+                      () => InputField(
+                    obscureText: controller.isInvisible.value,
+                    suffixIcon: IconButton(
+                      icon: !controller.isInvisible.value
+                          ? const Icon(Icons.visibility, color: kBlue)
+                          : const Icon(Icons.visibility_off,
+                          color: kBlue),
+                      onPressed: () {
+                        controller.isInvisible.value =
+                        !controller.isInvisible.value;
+                      },
+                    ),
+
+                    validator: (value){
+                      if(value == null){
+                        return tr("confirm_password_msg");
+                      }
+                      else if(_userPassword.text != _confirmPassword.text){
+                        return tr("password_not_matched");
+                      }
+                      return null;
+                    },
+                    controller: _confirmPassword,
+                    radius: 8,
+                    width: .8,
+                    height: 45,
+                    hint: "confirm_password",
+                    prefixIcon: Icons.lock,
+                  ),
+                ),
+                Button(
+                  radius: 8,
+                  width: .8,
+                  height: 45,
+                  label: 'update_password',
+                  backgroundColor: kBlue,
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+
+                    }
+                    else{
+                      print("Values all Empty");
+                    }
+                  },
+                ),
+
+              ],
+            ),
+          ),
+        ));
+  }
+
   Widget changePassDesktop(){
-    return Scaffold(
-        body: Column(
-      children: const [
-        AppHeader(title: "change_password",leadingIcon: Icons.arrow_back_ios_new_outlined, routeIndex: 5),
-        Text("change password Desktop"),
-      ],
-    ));
+    return  Scaffold(
+        appBar: AppBar(
+          leading: const Icon(Icons.lock),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
+          ),
+          title: const Text("change_password").tr(),
+        ),
+        body: Form(
+          key: formKey,
+          child: Card(
+            shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.blueGrey.shade100),
+                borderRadius: BorderRadius.circular(10)
+            ),
+            margin: const EdgeInsets.all(10.0),
+            child: ListView(
+              padding: const EdgeInsets.only(left: 40,right: 40,top: 15),
+              children: [
+                const SizedBox(height: 15),
+                Center(
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: kBlue.withOpacity(.05),
+                    ),
+                    child: const Icon(Icons.lock,size: 120,color: kGrey,),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Obx(
+                      () => InputField(
+                    obscureText: controller.isInvisible.value,
+                    suffixIcon: IconButton(
+                      icon: !controller.isInvisible.value
+                          ? const Icon(Icons.visibility, color: kBlue)
+                          : const Icon(Icons.visibility_off,
+                          color: kBlue),
+                      onPressed: () {
+                        controller.isInvisible.value =
+                        !controller.isInvisible.value;
+                      },
+                    ),
+                    validator: (value) =>
+                        controller.inputFieldValidator(value!,'current_password'),
+                    controller: _userCurrentPassword,
+                    radius: 8,
+                    width: .8,
+                    height: 45,
+                    hint: "current_password",
+                    prefixIcon: Icons.lock,
+                  ),
+                ),
+                Obx(
+                      () => InputField(
+                    obscureText: controller.isInvisible.value,
+                    suffixIcon: IconButton(
+                      icon: !controller.isInvisible.value
+                          ? const Icon(Icons.visibility, color: kBlue)
+                          : const Icon(Icons.visibility_off,
+                          color: kBlue),
+                      onPressed: () {
+                        controller.isInvisible.value =
+                        !controller.isInvisible.value;
+                      },
+                    ),
+                    validator: (value) =>
+                        controller.passwordValidator(value!),
+                    controller: _userPassword,
+                    radius: 8,
+                    width: .8,
+                    height: 45,
+                    hint: "new_password",
+                    prefixIcon: Icons.lock,
+                  ),
+                ),
+                Obx(
+                      () => InputField(
+                    obscureText: controller.isInvisible.value,
+                    suffixIcon: IconButton(
+                      icon: !controller.isInvisible.value
+                          ? const Icon(Icons.visibility, color: kBlue)
+                          : const Icon(Icons.visibility_off,
+                          color: kBlue),
+                      onPressed: () {
+                        controller.isInvisible.value =
+                        !controller.isInvisible.value;
+                      },
+                    ),
+
+                    validator: (value){
+                      if(value == null){
+                        return tr("confirm_password_msg");
+                      }
+                      else if(_userPassword.text != _confirmPassword.text){
+                        return tr("password_not_matched");
+                      }
+                      return null;
+                    },
+                    controller: _confirmPassword,
+                    radius: 8,
+                    width: .8,
+                    height: 45,
+                    hint: "confirm_password",
+                    prefixIcon: Icons.lock,
+                  ),
+                ),
+                Button(
+                  radius: 8,
+                  width: .8,
+                  height: 45,
+                  label: 'update_password',
+                  backgroundColor: kBlue,
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+
+                    }
+                    else{
+                      print("Values all Empty");
+                    }
+                  },
+                ),
+
+              ],
+            ),
+          ),
+        ));
   }
 }

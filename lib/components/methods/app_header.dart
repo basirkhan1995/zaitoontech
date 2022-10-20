@@ -86,183 +86,199 @@ class _AppHeaderState extends State<AppHeader> {
 
   Widget headingRow(context) {
     final controller = Get.put(XController());
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        //crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(20),
-              child: Env.searchOn? Row(
-                mainAxisSize: MainAxisSize.min,
-                children:  [
-                   Container(
-                     decoration: BoxDecoration(
-                       color: kBlue.withOpacity(.08),
-                       borderRadius: BorderRadius.circular(20)
-                     ),
-                     width: 300,
-                     height: 40,
-                     child: TextField(
-                       controller: Env.searchTextController,
-                       onChanged: widget.onChanged,
-                       decoration: InputDecoration(
-                         contentPadding: const EdgeInsets.all(8.0),
-                         hintText: widget.searchHint,
-                         prefixIcon: const Icon(Icons.search,color: kBlue,),
-                         border: InputBorder.none,
-                         suffixIcon: Env.searchTextController.text.isNotEmpty? IconButton(
-                           splashRadius: 15,
-                            onPressed: (){
-                             setState(() {
+    return SingleChildScrollView(
+       scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+         mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Material(
+                borderRadius: BorderRadius.circular(20),
+                child: Env.searchOn? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children:  [
+                     Container(
+                       decoration: BoxDecoration(
+                         color: kBlue.withOpacity(.08),
+                         borderRadius: BorderRadius.circular(10)
+                       ),
+                       width: 200,
+                       height: 40,
+                       child: TextField(
+                         controller: Env.searchTextController,
+                         onChanged: widget.onChanged,
+                         decoration: InputDecoration(
+                           contentPadding: const EdgeInsets.all(8.0),
+                           hintText: widget.searchHint,
+                           prefixIcon: const Icon(Icons.search,color: kBlue,),
+                           border: InputBorder.none,
+                           suffixIcon: Env.searchTextController.text.isNotEmpty? IconButton(
+                             splashRadius: 15,
+                              onPressed: (){
+                               setState(() {
 
-                             });
-                           Env.searchTextController.clear();
-                         }, icon: const Icon(Icons.clear,size: 16,color: kBlue,),
-                     ):null,
+                               });
+                             Env.searchTextController.clear();
+                           }, icon: const Icon(Icons.clear,size: 16,color: kBlue,),
+                       ):null,
+                         ),
                        ),
                      ),
-                   ),
-                ],
-              ) : IconButton(
-                tooltip: tr("search"),
-                splashRadius: 20,
-                splashColor: kBlue.withOpacity(.05),
-                onPressed: widget.onSearch,
-                icon: const Icon(Icons.search),
-              )
-            ),
-          ),
-          controller.menuID ==6? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(20),
-              child: IconButton(
-                tooltip: tr("add_product"),
-                splashRadius: 20,
-                splashColor: kBlue.withOpacity(.05),
-                onPressed: () {
-                  controller.setRoute(61);
-                },
-                icon: const Icon(Icons.add_circle_outlined),
+                  ],
+                ) : IconButton(
+                  tooltip: tr("search"),
+                  splashRadius: 20,
+                  splashColor: kBlue.withOpacity(.05),
+                  onPressed: widget.onSearch,
+                  icon: const Icon(Icons.search),
+                )
               ),
             ),
-          ):const SizedBox(),
-         controller.menuID ==31? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(20),
-              child: IconButton(
-                tooltip: tr("add_user"),
-                splashRadius: 20,
-                splashColor: kBlue.withOpacity(.05),
-                onPressed: () {
-                  controller.setRoute(3);
-                },
-                icon: const Icon(Icons.add_circle_outlined),
+            controller.menuID ==6? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Material(
+                borderRadius: BorderRadius.circular(20),
+                child: IconButton(
+                  tooltip: tr("add_product"),
+                  splashRadius: 20,
+                  splashColor: kBlue.withOpacity(.05),
+                  onPressed: () {
+                    controller.setRoute(61);
+                  },
+                  icon: const Icon(Icons.add_circle_outlined),
+                ),
+              ),
+            ):const SizedBox(),
+           controller.menuID ==31? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Material(
+                borderRadius: BorderRadius.circular(20),
+                child: IconButton(
+                  tooltip: tr("add_user"),
+                  splashRadius: 20,
+                  splashColor: kBlue.withOpacity(.05),
+                  onPressed: () {
+                    controller.setRoute(3);
+                  },
+                  icon: const Icon(Icons.add_circle_outlined),
+                ),
+              ),
+            ):const SizedBox(),
+            controller.menuID ==2? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Material(
+                borderRadius: BorderRadius.circular(20),
+                child: IconButton(
+                  tooltip: tr("add_stakeholder"),
+                  splashRadius: 20,
+                  splashColor: kBlue.withOpacity(.05),
+                  onPressed: () {
+                    controller.setRoute(3);
+                  },
+                  icon: const Icon(Icons.add_circle),
+                ),
+              ),
+            ):const SizedBox(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Material(
+                borderRadius: BorderRadius.circular(20),
+                child: IconButton(
+                  tooltip: tr('home'),
+                  splashRadius: 20,
+                  splashColor: kBlue.withOpacity(.05),
+                  onPressed: () => controller.setRoute(0),
+                  icon: const Icon(Icons.home),
+                ),
               ),
             ),
-          ):const SizedBox(),
-          controller.menuID ==2? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.0),
-            child: Material(
+            Material(
               borderRadius: BorderRadius.circular(20),
               child: IconButton(
-                tooltip: tr("add_stakeholder"),
-                splashRadius: 20,
-                splashColor: kBlue.withOpacity(.05),
-                onPressed: () {
-                  controller.setRoute(3);
-                },
-                icon: const Icon(Icons.add_circle),
-              ),
+                tooltip: tr('language'),
+                  splashColor: kBlue.withOpacity(.05),
+                  splashRadius: 20,
+                  onPressed: () =>
+                      Env.selectLanguageDialog(context,Env.selectedIndex),
+                  icon: const Icon(Icons.language_sharp)),
             ),
-          ):const SizedBox(),
-          Material(
-            borderRadius: BorderRadius.circular(20),
-            child: IconButton(
-              tooltip: tr('language'),
-                splashColor: kBlue.withOpacity(.05),
-                splashRadius: 20,
-                onPressed: () =>
-                    Env.selectLanguageDialog(context,Env.selectedIndex),
-                icon: const Icon(Icons.language_sharp)),
-          ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(20),
-              child: IconButton(
-                tooltip: tr('settings'),
-                splashRadius: 20,
-                splashColor: kBlue.withOpacity(.05),
-                onPressed: () {
-                  controller.setRoute(5);
-                },
-                icon: const Icon(Icons.settings),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Material(
+                borderRadius: BorderRadius.circular(20),
+                child: IconButton(
+                  tooltip: tr('settings'),
+                  splashRadius: 20,
+                  splashColor: kBlue.withOpacity(.05),
+                  onPressed: () {
+                    controller.setRoute(5);
+                  },
+                  icon: const Icon(Icons.settings),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(20),
-              child: IconButton(
-                tooltip: tr('logout'),
-                splashRadius: 20,
-                splashColor: kBlue.withOpacity(.05),
-                onPressed: () => controller.logout(),
-                icon: const Icon(Icons.power_settings_new_outlined),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Material(
+                borderRadius: BorderRadius.circular(20),
+                child: IconButton(
+                  tooltip: tr('logout'),
+                  splashRadius: 20,
+                  splashColor: kBlue.withOpacity(.05),
+                  onPressed: () => controller.logout(),
+                  icon: const Icon(Icons.power_settings_new_outlined),
+                ),
               ),
             ),
-          ),
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) => SimpleDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          title: Text(controller.userRole).tr(),
-                          children: [
-                            ListTile(
-                              leading:
-                                  const Icon(Icons.account_circle, size: 28),
-                              title: Text(
-                                  "${controller.firstName} ${controller.lastName}"),
-                            ),
-                            ListTile(
-                              leading: const Icon(
-                                  Icons.alternate_email_outlined,
-                                  size: 28),
-                              title: Text(controller.userName),
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.badge_rounded, size: 28),
-                              title: Text(controller.branchName),
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.important_devices_sharp,
-                                  size: 28),
-                              title: Text(controller.branchID),
-                            ),
-                          ],
-                        ));
-              },
-              child: const CircleAvatar(
-                radius: 13,
-                backgroundImage: AssetImage("assets/ghufran.jpg"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {
+                  showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => SimpleDialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            title: Text(controller.userRole).tr(),
+                            children: [
+                              ListTile(
+                                leading:
+                                    const Icon(Icons.account_circle, size: 28),
+                                title: Text(
+                                    "${controller.firstName} ${controller.lastName}"),
+                              ),
+                              ListTile(
+                                leading: const Icon(
+                                    Icons.alternate_email_outlined,
+                                    size: 28),
+                                title: Text(controller.userName),
+                              ),
+                              ListTile(
+                                leading: const Icon(Icons.badge_rounded, size: 28),
+                                title: Text(controller.branchName),
+                              ),
+                              ListTile(
+                                leading: const Icon(Icons.important_devices_sharp,
+                                    size: 28),
+                                title: Text(controller.branchID),
+                              ),
+                            ],
+                          ));
+                },
+                child: const CircleAvatar(
+                  radius: 13,
+                  backgroundImage: AssetImage("assets/ghufran.jpg"),
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -13,6 +13,7 @@ import 'package:zaitoontech/screens/settings/company_info.dart';
 import 'package:zaitoontech/screens/settings/contact_us.dart';
 import 'package:zaitoontech/screens/settings/privacy.dart';
 import 'package:zaitoontech/screens/settings/profile_settings.dart';
+import 'package:zaitoontech/services/sqflite/contato_page.dart';
 import '../../screens/menu/hr_menu/users.dart';
 import '../../screens/menu/dashboard.dart';
 import '../../screens/menu/finance.dart';

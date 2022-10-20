@@ -1,11 +1,13 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'package:zaitoontech/services/jsonModel/usersModel.dart';
 
 class DBHelper{
 
   static Future<Database> initDB ()async{
+    sqfliteFfiInit();
     var dbPath = await getDatabasesPath();
     String path = join(dbPath,'zaitoon.db');
     return await openDatabase(path, version: 1, onCreate: _onCreate);

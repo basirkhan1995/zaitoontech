@@ -18,12 +18,12 @@ class Reports extends StatelessWidget {
         body: Text("Report Mobile"));
   }
   Widget reportTablet(){
-    return Scaffold(body: Text("Report Tablet"));
+    return const Scaffold(body: Text("Report Tablet"));
   }
   Widget reportDesktop(){
     return Scaffold(body: Column(
       children: [
-        AppHeader(title: "reports",leadingIcon: Icons.dashboard_customize_sharp),
+        AppHeader(title: "reports",leadingIcon: Icons.report),
 
         Text("Report Desktop"),
       ],

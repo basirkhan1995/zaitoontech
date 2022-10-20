@@ -17,7 +17,7 @@ class ScreenLayout extends StatelessWidget {
       builder: (context, constraints) {
         if (constraints.maxWidth < 480) {
           return mobile;
-        } else if (constraints.maxWidth < 900) {
+        } else if (constraints.maxWidth < 800) {
           return tablet;
         } else {
           return desktop;

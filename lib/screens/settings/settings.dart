@@ -38,7 +38,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return ScreenLayout(
         mobile: settingsMobile(),
-        tablet: settingsTablet(),
+        tablet: settingsTablet(context),
         desktop: settingsDesktop(context));
   }
 
@@ -174,69 +174,138 @@ class _SettingsState extends State<Settings> {
       ),
     );
   }
-  Widget settingsTablet(){
+  Widget settingsTablet(context) {
+    //final controller = Get.put(XController());
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("settings").tr(),
+      body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          children: [
+            const AppHeader(leadingIcon: Icons.settings,title: "settings"),
+            const SizedBox(height: 5),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height *.9,
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        controller: _scrollController,
+                        children: [
+                          CustomCard(
+                              title: "profile",
+                              leading: const Icon(Icons.account_circle),
+                              subtitle: "account_info",
+                              onTap: () {
+                                controller.subMenuExtended = !controller.subMenuExtended;
+                                controller.setSubRoute(51);
+                              }
+                          ),
+                          CustomCard(
+                              title: "company_info",
+                              leading: Image.asset('assets/appIcon/company.png'),
+                              subtitle: "account_info",
+                              onTap: () {
+                                controller.subMenuExtended = !controller.subMenuExtended;
+                                controller.setSubRoute(50);
+                              }
+                          ),
+                          CustomCard(
+                            title: "language",
+                            leading: const Icon(Icons.language),
+                            subtitle: Get.locale.toString(),
+                            onTap: () => Env.selectLanguageDialog(context,VoidCallback),
+                          ),
+                          CustomCard(
+                              leading: const Icon(Icons.lock),
+                              title: "privacy_settings",
+                              subtitle: "role_management",
+                              onTap: () {
+                                controller.subMenuExtended = !controller.subMenuExtended;
+                                controller.setSubRoute(52);
+                              }
+                          ),
+                          CustomCard(
+                              leading: const Icon(Icons.security),
+                              title: "security",
+                              subtitle: "change_password",
+                              onTap: (){
+                                controller.subMenuExtended = !controller.subMenuExtended;
+                                controller.setSubRoute(53);
+                              }
+                          ),
+                          CustomCard(
+                              leading: const Icon(Icons.monetization_on),
+                              title: "currency",
+                              subtitle: "currency",
+                              onTap: (){
+                                controller.subMenuExtended = !controller.subMenuExtended;
+                                controller.setSubRoute(56);
+                              }
+                          ),
+                          CustomCard(
+                            title: "contact_us",
+                            leading: const Icon(Icons.help),
+                            subtitle: "contact",
+                            onTap: () {
+                              controller.subMenuExtended = !controller.subMenuExtended;
+                              controller.setSubRoute(54);
+                            },
+                          ),
+                          CustomCard(
+                            title: "about",
+                            leading: const Icon(Icons.info),
+                            subtitle: "app_info",
+                            onTap: (){
+                              controller.subMenuExtended = !controller.subMenuExtended;
+                              controller.setSubRoute(55);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                //ُSub Display Window
+                Expanded(
+                  flex: 2,
+                  child: GetBuilder<XController>(
+                      builder: (context) {
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 100),
+                          width: maxWidth,
+                          height: 1080,
+                          child: SingleChildScrollView(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            controller: _scrollController2,
+                            child: SizedBox(
+                                height: 700,
+                                child: MenuScreens(id:controller.subMenuID)),
+                          ),
+                        );
+                      }
+                  ),
+                ),
+                const SizedBox(width:10),
+              ],
+            )
+          ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 5),
-               CustomCard(
-                title: "profile",
-                leading: const Icon(Icons.account_circle),
-                subtitle: "account_info",
-                onTap: () => Get.to(const UserProfile()),
-              ),
-              CustomCard(
-                title: "language",
-                leading: const Icon(Icons.language),
-                subtitle: context.locale.toString(),
-                onTap: () => Env.selectLanguageDialog(context,VoidCallback),
-              ),
-              GetBuilder<XController>(builder: (context) {
-                return CustomCard(
-                  leading: const Icon(Icons.privacy_tip),
-                  title: "privacy_settings",
-                  subtitle: "role_management",
-                  onTap: () => Get.to(const PrivacySettings()),
-                );
-              }),
-              GetBuilder<XController>(builder: (context) {
-                return CustomCard(
-                  leading: const Icon(Icons.security),
-                  title: "security",
-                  subtitle: "change_password",
-                  onTap: () => Get.to(const ChangePassword()),
-                );
-              }),
-              CustomCard(
-                  leading: const Icon(Icons.monetization_on),
-                  title: "currency",
-                  subtitle: "currency",
-                  onTap: ()=> Get.to(const Currency()),
-              ),
-                CustomCard(
-                title: "contact_us",
-                leading: const Icon(Icons.help),
-                subtitle: "contact",
-                  onTap: () => Get.to(const ContactUs()),
-              ),
-                CustomCard(
-                title: "about",
-                leading: const Icon(Icons.info),
-                subtitle: "app_info",
-                  onTap: () => Get.to(const AboutApp()),
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
-
   Widget settingsMobile() {
     return Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.settings),
           title: const Text("settings").tr(),
         ),
         body: SingleChildScrollView(

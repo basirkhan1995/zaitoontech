@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zaitoontech/components/colors/colors.dart';
@@ -18,6 +22,59 @@ class Env {
   static final ScrollController scrollController = ScrollController();
   static bool searchOn = false;
   static int selectedIndex = 0;
+
+  static appBar(title,VoidCallback press, IconData icon, Widget leading){
+   return AppBar(
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+              splashRadius: 20,
+              splashColor: kGrey,
+              focusColor: kGrey,
+              hoverColor: kGrey.withOpacity(.7),
+              onPressed: press, icon:  Icon(icon = Icons.edit,size: 20,)),
+        )
+      ],
+      leading: leading,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+      ),
+      title: Text(title,style: const TextStyle(fontSize: 14)).tr(),
+    );
+  }
+
+  //To Check Internet Connectivity
+  static checkConnection(context, voidCallBack) async {
+    try {
+      final result = await InternetAddress.lookup('www.google.com')
+          .timeout(const Duration(seconds: 5));
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        if (kDebugMode) {
+          print('Connected');
+        }
+      }
+    } on SocketException catch (_) {
+      voidCallBack(() {
+        //Env.loader = false;
+      });
+      // Env.errorDialog('No Internet Connection','لطفا انترنت خود را بررسی کنید', DialogType.ERROR, context, () { });
+      if (kDebugMode) {
+        print('No Connection');
+      }
+    } on TimeoutException catch (_) {
+      await Future.delayed(const Duration(seconds: 6));
+      voidCallBack(() {
+        //Env.loader = false;
+      });
+      //Env.errorDialog('No internet connection', 'لطفا انترنت خود را بررسی کنید', DialogType.ERROR, context, () { });
+      if (kDebugMode) {
+        print('No Connection');
+      }
+    }
+  }
+
+
   static jumpScreen(context, voidCallBack){
     Navigator.push(
       context,
@@ -80,21 +137,6 @@ class Env {
           ),
         ],
       ),
-    );
-  }
-  
-  static appBar (String title){
-    return AppBar(
-      iconTheme: const IconThemeData(
-        color: kWhite,
-      ),
-      elevation: 3,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10))
-      ),
-      centerTitle: true,
-      backgroundColor: kBlue,
-      title: Text(title,style: const TextStyle(color: kWhite),).tr(),
     );
   }
   

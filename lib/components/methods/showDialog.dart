@@ -21,11 +21,11 @@ class DialogUtils {
 
             ),
             actions: <Widget>[
-              FlatButton(
-                child: Text(okBtnText),
+              TextButton(
                 onPressed: okBtnFunction,
+                child: Text(okBtnText),
               ),
-              FlatButton(
+              TextButton(
                   child: Text(cancelBtnText),
                   onPressed: () => Navigator.pop(context))
             ],

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
-import 'package:zaitoontech/components/methods/mobileSideMenu.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
 import 'package:zaitoontech/screens/menu/dashboard.dart';
 import 'package:zaitoontech/screens/home/sideBar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ScreenLayout(
@@ -18,7 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget homeScreenMobile() {
     return Scaffold(
-      drawer: const SideBarMobile(),
+      drawer: const Drawer(),
         appBar: AppBar(
           title: const Text("Home Page"),
         ),
@@ -26,12 +24,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
   Widget homeScreenTablet() {
-    return Scaffold(
-      drawer: const SideBarMobile(),
-      appBar: AppBar(
-        title: const Text("Home Pages"),
-      ),
-      body: const Dashboard(),
+    XController().getUserDetailsState();
+    return const Scaffold(
+      body: SideBar(),
     );
   }
   Widget homeScreenDesktop() {

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -178,6 +179,19 @@ class XController extends GetxController {
     isSwitchOn = value;
     xStorage.write("switchKey", isSwitchOn);
     update();
+  }
+
+  checkInternetConnection()async{
+    final result = await InternetAddress.lookup('www.google.com').timeout(const Duration(seconds: 5));
+    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty){
+       return;
+    }else{
+      return const Scaffold(
+          body:
+         Center(
+          child: Text("No Internet Connection")));
+    }
+
   }
 
 

@@ -76,7 +76,7 @@
   "percentage": "Percentage",
   "products": "Products",
   "search": "Search",
-  "logout": "Logout",
+  "logout": "Log out",
   "add_user": "Add New User",
   "add_stakeholder": "Add New Stakeholder",
   "no_data_found": "No Data Found",
@@ -90,5 +90,14 @@
   "branch_id": "Branch ID",
   "user_system_id": "System ID",
   "branch_name": "Branch Name",
-  "address": "Address"
+  "address": "Address",
+  "about_zaitoon": "Zaitoon Technology Services Company founded by Ghufran Ataie in 2020, the first project developed under Zaitoon services was called Beans Finance Management System, which is used by great companies and organization in Afghanistan.",
+  "zaitoon": "Zaitoon",
+  "add_product": "Add New Product",
+  "balance_transfer": "Balance Transfer",
+  "money_transfer": "Cross Currency",
+  "mnu_system_acc": "System Acc",
+  "accounts": "Accounts",
+  "purchase": "Purchase",
+  "stock_transfer": "Stock Transfer"
 }

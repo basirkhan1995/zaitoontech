@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:zaitoontech/components/colors/colors.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
@@ -20,7 +19,7 @@ class Users extends StatefulWidget {
 }
 
 class _UsersState extends State<Users> {
-  final ScrollController _scrollController = ScrollController();
+  //final ScrollController _scrollController = ScrollController();
   final controller = Get.put(XController());
   final List<User> _users = [
     User(

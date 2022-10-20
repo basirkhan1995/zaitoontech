@@ -60,6 +60,9 @@ class ZaitoonApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Zaitoon Tech',
       theme: ThemeData(
+        iconTheme: const IconThemeData(
+          color: kGrey,
+        ),
         hoverColor: kBlue.withOpacity(.05),
           primarySwatch: Colors.blue,
           appBarTheme: const AppBarTheme(

@@ -5,6 +5,7 @@ import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/components/methods/custom_tile.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
 import '../../components/colors/colors.dart';
+import '../../components/function_methods/env.dart';
 
 
 class UserProfile extends StatelessWidget {
@@ -12,7 +13,7 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenLayout(mobile: userProfileMobile(), tablet: userProfileDesktop(), desktop: userProfileDesktop());
+    return ScreenLayout(mobile: userProfileMobile(), tablet: userProfileTablet(), desktop: userProfileDesktop());
   }
   Widget userProfileMobile(){
     final controller = Get.put(XController());
@@ -75,24 +76,7 @@ class UserProfile extends StatelessWidget {
   Widget userProfileTablet(){
     final controller = Get.put(XController());
     return  Scaffold(
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                  splashRadius: 20,
-                  splashColor: kGrey,
-                  focusColor: kGrey,
-                  hoverColor: kGrey.withOpacity(.7),
-                  onPressed: (){}, icon: const Icon(Icons.edit,size: 20,)),
-            )
-          ],
-          leading: const Icon(Icons.account_circle),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
-          ),
-          title: const Text("profile",style: TextStyle(fontSize: 16)).tr(),
-        ),
+        appBar:Env.appBar("profile", () { }, Icons.edit, const Icon(Icons.account_circle)),
         body: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
@@ -157,24 +141,7 @@ class UserProfile extends StatelessWidget {
   Widget userProfileDesktop(){
     final controller = Get.put(XController());
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                  splashRadius: 20,
-                  splashColor: kGrey,
-                  focusColor: kGrey,
-                  hoverColor: kGrey.withOpacity(.7),
-                  onPressed: (){}, icon: const Icon(Icons.edit,size: 20,)),
-            )
-          ],
-          leading: const Icon(Icons.account_circle),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10)
-          ),
-          title: const Text("profile",style: TextStyle(fontSize: 16)).tr(),
-        ),
+        appBar: Env.appBar("profile", () { }, Icons.edit, const Icon(Icons.account_circle)),
         body: Column(
       children:   [
 

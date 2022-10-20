@@ -93,7 +93,7 @@ class _ExpansionMenuState extends State<ExpansionMenu>
             child: _currIndex == 0
                 ? Icon(Icons.keyboard_arrow_down, size: 20,color: Colors.grey.withOpacity(.25), key: const ValueKey('icon1'))
                 : Icon(Icons.close_sharp, size: 18,
-                    key: ValueKey('icon2'), color: Colors.grey.withOpacity(.25))),
+                    key: const ValueKey('icon2'), color: Colors.grey.withOpacity(.25))),
         //trailing: !isExpanded? const Icon(Icons.keyboard_arrow_down): const Icon(Icons.arrow_forward_ios_outlined,size: 15,),
         children: widget.children!,
       ),

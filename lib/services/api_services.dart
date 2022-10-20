@@ -1,29 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/services/components/dialog_helper.dart';
 import '../components/function_methods/env.dart';
 import '../screens/home/home_screen.dart';
-import '../setting_search.dart';
 import 'components/base_client.dart';
 import 'components/error_handler.dart';
 
 class HttpServices with BaseController {
   final controller = Get.put(XController());
-  List<Search> mySetting = settings;
-  // Future<List<ShippingModel>> getShipping() async {
-  //   var uri = Uri.parse("http://zaitoon.tech/API/transport/allShipping.php");
-  //   String cTypeUrl = "http://zaitoon.tech/API/transport/allShipping.php";
-  //   var response = await http.get(uri).timeout(const Duration(seconds: timeOutDuration));
-  //   var decodeDate = jsonDecode(res.body.toString());
-  //   if (res.statusCode == 200){
-  //     for (Map<String, dynamic> i in decodeDate) {
-  //       shippingList.add(ShippingModel.fromJson(i));
-  //     }
-  //     return shippingList;
-  //   } else {
-  //     return shippingList;
-  //   }
-  // }
 
    void personalSignUp(firstName, lastName, cellPhone, userName, userPass) async{
     showLoading();
@@ -37,15 +22,15 @@ class HttpServices with BaseController {
     var response = await BaseClient().post("http://zaitoon.tech/API/", "signupPersonal.php", data).catchError(handleError);
     String result = response['msg'];
     if(result == "Exists"){
-      print(response);
+      debugPrint(response);
       hideLoading();
       DialogHelper.showErrorDialog(description: "Account Already exist, please choose another name",title: "Operation Failed!");
     }else if(result == "Failed"){
-      print(response);
+      debugPrint(response);
       hideLoading();
       DialogHelper.showErrorDialog(description: "Failed to create account, try again later",title: "Operation Failed");
     }else{
-      print(response);
+      debugPrint(response);
       hideLoading();
       DialogHelper.showErrorDialog(description: "Operation Succeed",title: "You have successfully created account");
     }
@@ -65,18 +50,18 @@ class HttpServices with BaseController {
         hideLoading();
         controller.saveUserDetails(response);
         controller.rememberMe();
-        Env.jumpScreen(context, HomeScreen());
+        Env.jumpScreen(context, const HomeScreen());
         //Get.to(()=> const HomeScreen());
-        print("status: $uStatus");
+        debugPrint("status: $uStatus");
       }else{
-        print("result is: $result");
-        print("your status is: $uStatus");
+        debugPrint("result is: $result");
+        debugPrint("your status is: $uStatus");
       }
     }else if(result == "0"){
       hideLoading();
       return DialogHelper.showErrorDialog(description: "access_denied_msg",title: "access_denied");
     }
-    print(response);
+    debugPrint(response);
   }
 
   getData() async {
@@ -86,7 +71,7 @@ class HttpServices with BaseController {
         .catchError(handleError);
     if (response == null) return null;
     hideLoading();
-    print(response);
+    debugPrint(response);
   }
 
   void postData() async {
@@ -97,7 +82,7 @@ class HttpServices with BaseController {
         .catchError(handleError);
     if (response == null) return;
     hideLoading();
-    print(response);
+    debugPrint(response);
   }
 
   void postShipping(dataBody) async {
@@ -108,7 +93,7 @@ class HttpServices with BaseController {
         .catchError(handleError);
     if (response == null) return;
     hideLoading();
-    print(response);
+    debugPrint(response);
   }
 
 }
