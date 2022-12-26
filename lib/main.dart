@@ -75,7 +75,9 @@ class ZaitoonApp extends StatelessWidget {
           )),
       home: GetBuilder<XController>(
         builder: (context) {
-          return controller.isLoginSucceed? const HomeScreen(): const LoginScreen();
+          return  controller.isLoginSucceed
+              ? const HomeScreen()
+              : const LoginScreen();
         }
       ),
     );

@@ -26,12 +26,15 @@ class XController extends GetxController {
   RxBool isPasswordVisible = false.obs;
   RxBool searchOn = false.obs;
 
+
   var isInvisible = true.obs;
   var isNestedNavigation = false;
   var isExtended = true;
   var isSelected = false;
   var subMenuExtended = false;
   var isLoginSucceed = false;
+  var rememberLogin = false;
+
   //Menu Role Booleans
   var isSwitchOn = false;
   var isProfileOn = false;
@@ -120,6 +123,20 @@ class XController extends GetxController {
     update();
   }
 
+  // //Save Login
+  // rememberMe(){
+  //   isLoginSucceed = true;
+  //   xStorage.write('rememberLogin', isLoginSucceed);
+  //   update();
+  // }
+  //
+  // //SIGN OUT
+  // logout(){
+  //  isLoginSucceed = false;
+  //  xStorage.write("rememberLogin", isLoginSucceed);
+  //  Get.to(()=> const LoginScreen());
+  // update();
+  // }
   //Save Login
   rememberMe(){
     isLoginSucceed = true;
@@ -127,14 +144,22 @@ class XController extends GetxController {
     update();
   }
 
-  //SIGN OUT
-  logout(){
-   isLoginSucceed = false;
-   xStorage.write("rememberLogin", isLoginSucceed);
-   Get.to(()=> const LoginScreen());
-  update();
+  // Remember me (Auto Login Check Mark)
+  isChecked() {
+    rememberLogin = !rememberLogin;
+    xStorage.write('isChecked', rememberLogin);
+    update();
   }
 
+  //SIGN OUT
+  logout(context) {
+    isLoginSucceed = false;
+    rememberLogin = false;
+    xStorage.write("rememberLogin", isLoginSucceed);
+    Navigator. of(context). pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+    const LoginScreen()), (Route<dynamic> route) => false);
+    update();
+  }
   profileSwitch(bool value){
     isProfileOn = value;
     xStorage.write("profile", isProfileOn);

@@ -230,7 +230,7 @@ class _AppHeaderState extends State<AppHeader> {
                   tooltip: tr('logout'),
                   splashRadius: 20,
                   splashColor: kBlue.withOpacity(.05),
-                  onPressed: () => controller.logout(),
+                  onPressed: () => controller.logout(context),
                   icon: const Icon(Icons.power_settings_new_outlined),
                 ),
               ),

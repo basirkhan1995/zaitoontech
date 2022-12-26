@@ -303,16 +303,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       hint: "password",
                       prefixIcon: Icons.lock,
                     )),
-                    ListTile(
-                        leading:Checkbox(
-                          value: rememberMe,
-                          onChanged: (value){
-                            setState(() {
-                              rememberMe = !rememberMe;
-                            });
-                          },
-                        ),
-                        title: const Text("Remember_me")
+                    GetBuilder<XController>(
+                      builder: (context) {
+                        return ListTile(
+                          contentPadding: EdgeInsets.zero,
+                            visualDensity: const VisualDensity(
+                              horizontal: -4,
+                              vertical: -4
+                            ),
+                            leading:Checkbox(
+                                activeColor: kBlue,
+                                value: controller.rememberLogin,
+                                onChanged: (value)=>controller.isChecked()
+                            ),
+                            title: const Text("rememberMe").tr(),
+                          trailing: const Text("forgot_password_btn",
+                              style: TextStyle(fontWeight: FontWeight.bold))
+                              .tr(),
+                        );
+                      }
                     ),
                     Button(
                       radius: 8,
@@ -322,7 +331,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       backgroundColor: kBlue,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          //Get.to(const HomeScreen());
                           HttpServices().login(context);
                         }
                       },
@@ -348,9 +356,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         )
                       ],
                     ),
-                    const Text("forgot_password_btn",
-                        style: TextStyle(fontWeight: FontWeight.bold))
-                        .tr()
+
                   ],
                 ),
               ),

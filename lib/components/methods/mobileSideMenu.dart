@@ -218,7 +218,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
                                 color: Colors.grey.withOpacity(.25)),
                             title: Text("logout",style: TextStyle(color: Colors.grey.withOpacity(.25)),),
                             onTap: () {
-                              controller.logout();
+                              controller.logout(context);
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                                       (Route<dynamic> route) => false);
