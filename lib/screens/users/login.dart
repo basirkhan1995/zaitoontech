@@ -20,7 +20,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final controller = Get.put(XController());
-
+   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
     return ScreenLayout(
@@ -86,6 +86,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     hint: "password",
                     prefixIcon: Icons.lock,
                   ),
+                ),
+                ListTile(
+                  leading:Checkbox(
+                    value: rememberMe,
+                    onChanged: (value){
+                      setState(() {
+                        rememberMe = !rememberMe;
+                      });
+                    },
+                  ),
+                  title: Text("Remember me")
                 ),
                 Button(
                   fontSize: 16,
@@ -255,12 +266,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // ListTile(
-                    //   title: const Text(
-                    //     "login_title",
-                    //     style: TextStyle(fontWeight: FontWeight.bold),
-                    //   ).tr(),
-                    // ),
                     const SizedBox(
                       height: 50,
                     ),
@@ -298,6 +303,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       hint: "password",
                       prefixIcon: Icons.lock,
                     )),
+                    ListTile(
+                        leading:Checkbox(
+                          value: rememberMe,
+                          onChanged: (value){
+                            setState(() {
+                              rememberMe = !rememberMe;
+                            });
+                          },
+                        ),
+                        title: const Text("Remember me")
+                    ),
                     Button(
                       radius: 8,
                       width: .8,
