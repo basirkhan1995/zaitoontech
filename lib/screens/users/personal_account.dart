@@ -12,14 +12,14 @@ import '../../components/methods/input_field.dart';
 import '../../services/api_services.dart';
 import '../home/home_screen.dart';
 
-class BusinessSignup extends StatefulWidget {
-  const BusinessSignup({Key? key}) : super(key: key);
+class PersonalSignup extends StatefulWidget {
+  const PersonalSignup({Key? key}) : super(key: key);
 
   @override
-  State<BusinessSignup> createState() => _BusinessSignupState();
+  State<PersonalSignup> createState() => _PersonalSignupState();
 }
 
-class _BusinessSignupState extends State<BusinessSignup> {
+class _PersonalSignupState extends State<PersonalSignup> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final _firstName = TextEditingController();
   final _lastName = TextEditingController();

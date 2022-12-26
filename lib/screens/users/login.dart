@@ -5,6 +5,7 @@ import 'package:zaitoontech/components/colors/colors.dart';
 import 'package:zaitoontech/components/getX_controllers/xController.dart';
 import 'package:zaitoontech/components/methods/input_field.dart';
 import 'package:zaitoontech/components/methods/screen_layout.dart';
+import 'package:zaitoontech/screens/users/selectGoal.dart';
 import 'package:zaitoontech/screens/users/signup.dart';
 import '../../components/function_methods/env.dart';
 import '../../components/methods/custom_button.dart';
@@ -96,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                   ),
-                  title: Text("Remember me")
+                  title: const Text("Remember me")
                 ),
                 Button(
                   fontSize: 16,
@@ -352,7 +353,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => const PersonalSignUpScreen())),
+                                  builder: (_) => const SelectGoal())),
                         )
                       ],
                     ),
