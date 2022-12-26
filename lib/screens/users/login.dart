@@ -312,7 +312,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                         ),
-                        title: const Text("Remember me")
+                        title: const Text("Remember_me")
                     ),
                     Button(
                       radius: 8,
