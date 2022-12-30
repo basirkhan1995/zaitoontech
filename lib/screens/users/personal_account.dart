@@ -408,13 +408,14 @@ class _PersonalSignupState extends State<PersonalSignup> {
           child: Form(
             key: formKey,
             child: Container(
-              decoration: BoxDecoration(boxShadow: const [
-                BoxShadow(blurRadius: 5, spreadRadius: 0, offset: Offset(0, 1))
-              ], color: kWhite, borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(
+                color: kWhite,
+                borderRadius: BorderRadius.circular(10)
+              ),
               height: MediaQuery.of(context).size.height * .8,
-              width: 500,
+              width: 600,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

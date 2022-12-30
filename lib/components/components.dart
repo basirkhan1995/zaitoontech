@@ -21,7 +21,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
         children: <Widget>[
           //const SizedBox(height: 35),
           Text(
-            login ? "don't_have_acc_msg".tr() : "already_acc_msg".tr(),
+            login ? "don't_have_acc_msg".tr() : "signup_already_hint".tr(),
             style: const TextStyle(
               fontFamily: "avenir",
               color: Env.primaryLight,
@@ -68,7 +68,7 @@ class RoundedButton extends StatelessWidget {
       width: size.width * 1,
       height: 46,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(6.0),
         child: TextButton(
           style: ButtonStyle(
             padding: MaterialStateProperty.all<EdgeInsets>(
@@ -236,19 +236,19 @@ class RoundedInputField extends StatelessWidget {
           hintText: hintText?.tr(),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 1.7, color: Env.primaryLight),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Env.primaryLight),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 1.5, color: Colors.red),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.red),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           errorStyle: const TextStyle(height: 0)
         ),
@@ -328,19 +328,19 @@ class _RoundedComplexPasswordFieldState extends State<RoundedComplexPasswordFiel
               hintStyle: const TextStyle(fontSize: 14),
               focusedErrorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(width: 1.5, color: Colors.red),
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(6),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(width: 1.5, color: Env.primaryLight),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(6),
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Env.primaryLight),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(6),
               ),
               errorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.red),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(6),
               ),
               contentPadding:
                   const EdgeInsets.only(left: 0.0, right: 5.0, top: 5.0),
@@ -537,19 +537,19 @@ class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
           hintStyle: const TextStyle(fontSize: 14),
           focusedErrorBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 1.7, color: Colors.red),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 1.5, color: Env.primaryLight),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Env.primaryLight),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.red),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(6),
           ),
           errorStyle: const TextStyle(height: 0),
           contentPadding:

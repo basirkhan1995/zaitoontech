@@ -29,7 +29,6 @@ class _BusinessSignupState extends State<BusinessSignup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: ScreenLayout(
         mobile: _mobileSignup(),
         tablet: _tabletSignup(),
@@ -276,20 +275,18 @@ class _BusinessSignupState extends State<BusinessSignup> {
   //desktop Sign up
   Widget _desktopSignup() {
     Size size = MediaQuery.of(context).size;
-    return Background(
+    return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
+              borderRadius: BorderRadius.circular(8),
               color: Colors.white,
             ),
             width: 600,
-            height: size.height * 0.85,
-            //padding: const EdgeInsets.symmetric(horizontal: 0),
-            //color: Colors.blue,
+            height: size.height * 0.95,
             child: Center(
               child: SingleChildScrollView(
                 child: Form(
@@ -299,21 +296,25 @@ class _BusinessSignupState extends State<BusinessSignup> {
                     child: Column(
                       children: [
                         //Create Account title
-                        const Text(
-                          'create_acc_title',
-                          style: TextStyle(
-                              fontFamily: "avenir",
-                              fontSize: 25,
-                              color: Colors.green,
-                              fontWeight: FontWeight.w600),
-                        ).tr(),
+                        ListTile(
+                          title: const Text(
+                            'create_acc_title',
+                            style: TextStyle(
+                                fontFamily: "avenir",
+                                fontSize: 25,
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600),
+                          ).tr(),
+                          subtitle:  Text(
+                            'create_acc_subtitle',
+                            style: TextStyle(
+                                fontFamily: "avenir",
+                                fontSize: 15, color: Colors.green.withOpacity(.7)),
+                          ).tr(),
+                        ),
+
                         //Create Title
-                        Text(
-                          'create_acc_subtitle',
-                          style: TextStyle(
-                              fontFamily: "avenir",
-                              fontSize: 15, color: Colors.green.withOpacity(.7)),
-                        ).tr(),
+
                         const SizedBox(height: 20),
                         Row(
                           mainAxisSize: MainAxisSize.min,
@@ -385,19 +386,33 @@ class _BusinessSignupState extends State<BusinessSignup> {
                         const SizedBox(height: 8.0),
                         RoundedButton(
                           press: () {
-                            if (_formKey.currentState!.validate()) {
+                            if (_formKey.currentState!.validate()){
                               setState(() => inProcess = true);
-                              businessSignup()
-                                  .then((value) => setState(() => inProcess = false));
+                              businessSignup().then((value) => setState(() => inProcess = false));
                             }
                           },
                           text: 'signup_btn',
                         ),
-                        AlreadyHaveAnAccountCheck(
-                          login: false,
-                          press: () {
-                            Env.jumpScreen(context, const LoginScreen());
-                          },
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text("signup_already_hint").tr(),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            InkWell(
+                              child: const Text(
+                                "login_btn",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ).tr(),
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const LoginScreen())),
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: 60,
