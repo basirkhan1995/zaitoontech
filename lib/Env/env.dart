@@ -3,6 +3,18 @@ import 'package:flutter/material.dart';
 
 class Env{
 
+  static back(context){
+    Navigator.of(context).pop();
+  }
+
+  static goto(Widget route,context){
+   return Navigator.push(context, MaterialPageRoute(builder: (context)=> route));
+  }
+
+  static gotoRemove(Widget route, context){
+    return Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> route));
+  }
+
   static MaterialColor buildMaterialColor(Color color) {
     List strengths = <double>[.05];
     Map<int, Color> swatch = {};

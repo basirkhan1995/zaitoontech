@@ -11,5 +11,19 @@
   "access_denied": "Access Denied, username or password incorrect",
   "zaitoon": "Zaitoon",
   "username_required": "Username is required",
-  " password_required": "Password is required"
+  "password_required": "Password is required",
+  "hospital": "Hospital",
+  "transport": "Transport",
+  "jewelry": "Jewelry",
+  "school": "School",
+  "supermarket": "Supermarket",
+  "tailoring": "Tailoring",
+  "business_msg": "Select your business category",
+  "next": "Next",
+  "business_title": "Business Category",
+  "personal_account": "Personal account",
+  "business_account": "Business account",
+  "cancel": "Cancel",
+  "account_title": "Account category",
+  "account_hint": "Select your account category"
 }

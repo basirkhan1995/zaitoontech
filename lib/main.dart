@@ -4,7 +4,6 @@ import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 import 'package:zaitoontech/Components/Colors/colors.dart';
 import 'package:zaitoontech/Views/Authentication/Login/login.dart';
-
 import 'Components/Providers/ui_provider.dart';
 import 'Env/env.dart';
 

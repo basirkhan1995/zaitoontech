@@ -11,5 +11,19 @@
   "access_denied": "کاربری حساب او د عبور کلمه نادرست ده",
   "zaitoon": "زیتون",
   "username_required": "خپل یوزر دننه کری",
-  " password_required": " خپل رمز دننه کری"
+  "password_required": " خپل رمز دننه کری",
+  "hospital": "روغتون",
+  "transport": "حمل و نقل",
+  "jewelry": "زیورات",
+  "school": "شونحی",
+  "supermarket": "سوپر مارکیت",
+  "tailoring": "خیاطی",
+  "business_msg": "خپل تجارت انتخاب وکری",
+  "next": "بعدی",
+  "business_title": "تجارت دول",
+  "personal_account": "شخصی",
+  "business_account": "تجارت",
+  "cancel": "لغو کول",
+  "account_title": "حساب بخش",
+  "account_hint": "خپل حساب نوع انتخاب وکری"
 }

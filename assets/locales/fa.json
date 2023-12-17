@@ -11,5 +11,19 @@
   "access_denied": "حساب کاربر و کلمه عبور نادرست میباشد",
   "zaitoon": "زیتون",
   "username_required": " یوزر خود را وارید نمایید",
-  " password_required": " کلمه عبور خود را وارید نمایید"
+  "password_required": " کلمه عبور خود را وارید نمایید",
+  "hospital": "شفاخانه",
+  "transport": "حمل و نقل",
+  "jewelry": "زیورات",
+  "school": "مکتب",
+  "supermarket": "سوپر مارکیت",
+  "tailoring": "خیاطی",
+  "business_msg": "تجارت خود را انتخاب نماید",
+  "next": "بعدی",
+  "business_title": "نوع تجارت",
+  "personal_account": "شخصی",
+  "business_account": "تجارت",
+  "cancel": "منصرف شدن",
+  "account_title": "بخش حساب",
+  "account_hint": "نوع حساب خود را انتخاب نمایید"
 }

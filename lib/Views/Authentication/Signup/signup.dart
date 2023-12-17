@@ -3,7 +3,8 @@ import 'package:flutter_locales/flutter_locales.dart';
 import 'package:zaitoontech/Components/Methods/responsive.dart';
 
 class Signup extends StatelessWidget {
-  const Signup({super.key});
+  final int? type;
+  const Signup({super.key, this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +30,8 @@ class Signup extends StatelessWidget {
   }
 
   Widget desktop(){
-    return const Center(
-      child: LocaleText("signup desktop"),
+    return Center(
+      child: LocaleText(type.toString()),
     );
   }
 

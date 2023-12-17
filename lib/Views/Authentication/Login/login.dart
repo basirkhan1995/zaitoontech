@@ -3,9 +3,11 @@ import 'package:flutter_locales/flutter_locales.dart';
 import 'package:zaitoontech/Components/Methods/button.dart';
 import 'package:zaitoontech/Components/Methods/responsive.dart';
 import 'package:zaitoontech/Components/Methods/textfield.dart';
-import 'package:zaitoontech/Views/Authentication/background.dart';
-
+import 'package:zaitoontech/Views/Authentication/BusinessCategory/business_category.dart';
+import 'package:zaitoontech/Views/Authentication/Components/background.dart';
+import 'package:zaitoontech/Views/Authentication/SelectCategory/select_category.dart';
 import '../../../Components/Methods/switch_language.dart';
+import '../../../Env/env.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -72,6 +74,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * .5,
+                              child: Image.asset("assets/photos/zaitoonLogo.jpg")),
+
+                          const SizedBox(height: 15),
                           ZField(
                             title: "username",
                             icon: Icons.account_circle_rounded,
@@ -135,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               const LocaleText("signup_message"),
                               TextButton(
-                                  onPressed: (){},
+                                  onPressed: ()=> Env.goto(const SwitchAccount(), context),
                                   child: const LocaleText("register",style: TextStyle(fontWeight: FontWeight.bold),))
                             ],
                           ),
@@ -146,10 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 //End
-                Padding(
+               isLoginTrue? Padding(
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   child: LocaleText("access_denied",style: TextStyle(color: Colors.red.shade900),),
-                ),
+                ): const SizedBox(),
 
 
 
@@ -163,115 +170,119 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget tablet() {
-    return Center(
-      child: Form(
-        key: formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Center(
-            child: Column(
-              children: [
+    Size size = MediaQuery.of(context).size;
+    return Form(
+      key: formKey,
+      child: Center(
+        child: SizedBox(
+          width: size.width *.7,
+          child: Column(
+            children: [
 
-                const ListTile(
-                  title: LocaleText(
-                    "zaitoon",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
-
-                  subtitle: LocaleText("login"),
-                ),
-                //Body
-                Expanded(
-                  child: Center(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ZField(
-                            title: "username",
-                            icon: Icons.account_circle_rounded,
-                            controller: username,
-                            validator: (value){
-                              if(value.isEmpty){
-                                return Locales.string(context, "username_required");
-                              }
-                              return null;
-                            },
-                          ),
-
-                          ZField(
-                            securePassword: isVisible,
-                            title: "password",
-                            icon: Icons.lock,
-                            controller: password,
-                            validator: (value){
-                              if(value.isEmpty){
-                                return Locales.string(context, "password_required");
-                              }
-                              return null;
-                            },
-                            trailing: IconButton(
-                              onPressed: (){
-                                setState(() {
-                                  isVisible = !isVisible;
-                                });
-                              },
-                              icon: Icon(isVisible? Icons.visibility : Icons.visibility_off),
-                            ),
-                          ),
-
-                          ListTile(
-                            horizontalTitleGap: 12,
-                            contentPadding: const EdgeInsets.only(left: 8),
-                            title: const LocaleText("remember_me"),
-                            leading: Checkbox(
-                              value: rememberMe,
-                              onChanged: (value){
-                                setState(() {
-                                  rememberMe = !rememberMe;
-                                });
-                              },
-                            ),
-                          ),
-
-                          ZButton(
-                              label: "login",
-                              fontSize: 15,
-                              onTap: () {
-                                if(formKey.currentState!.validate()){
-
-                                }
-                              }
-                          ),
-
-                          //End
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const LocaleText("signup_message"),
-                              TextButton(
-                                  onPressed: (){},
-                                  child: const LocaleText("register",style: TextStyle(fontWeight: FontWeight.bold),))
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+              const ListTile(
+                title: LocaleText(
+                  "zaitoon",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold
                   ),
                 ),
 
-                //End
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  child: LocaleText("access_denied",style: TextStyle(color: Colors.red.shade900),),
+                subtitle: LocaleText("login"),
+              ),
+              //Body
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * .5,
+                            child: Image.asset("assets/photos/zaitoonLogo.jpg")),
+                        const SizedBox(height: 15),
+
+                        ZField(
+                          title: "username",
+                          icon: Icons.account_circle_rounded,
+                          controller: username,
+                          validator: (value){
+                            if(value.isEmpty){
+                              return Locales.string(context, "username_required");
+                            }
+                            return null;
+                          },
+                        ),
+
+                        ZField(
+                          securePassword: isVisible,
+                          title: "password",
+                          icon: Icons.lock,
+                          controller: password,
+                          validator: (value){
+                            if(value.isEmpty){
+                              return Locales.string(context, "password_required");
+                            }
+                            return null;
+                          },
+                          trailing: IconButton(
+                            onPressed: (){
+                              setState(() {
+                                isVisible = !isVisible;
+                              });
+                            },
+                            icon: Icon(isVisible? Icons.visibility : Icons.visibility_off),
+                          ),
+                        ),
+
+                        ListTile(
+                          horizontalTitleGap: 12,
+                          contentPadding: const EdgeInsets.only(left: 8),
+                          title: const LocaleText("remember_me"),
+                          leading: Checkbox(
+                            value: rememberMe,
+                            onChanged: (value){
+                              setState(() {
+                                rememberMe = !rememberMe;
+                              });
+                            },
+                          ),
+                        ),
+
+                        ZButton(
+                            label: "login",
+                            fontSize: 15,
+                            onTap: () {
+                              if(formKey.currentState!.validate()){
+
+                              }
+                            }
+                        ),
+
+                        //End
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const LocaleText("signup_message"),
+                            TextButton(
+                                onPressed: ()=> Env.goto(const SwitchAccount(), context),
+                                child: const LocaleText("register",style: TextStyle(fontWeight: FontWeight.bold),))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
+              ),
+
+              //End
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: LocaleText("access_denied",style: TextStyle(color: Colors.red.shade900),),
+              ),
 
 
 
 
-              ],
-            ),
+            ],
           ),
         ),
       ),
@@ -368,7 +379,7 @@ class _LoginScreenState extends State<LoginScreen> {
                              children: [
                                const LocaleText("signup_message"),
                                TextButton(
-                                   onPressed: (){},
+                                   onPressed: ()=>Env.goto(const BusinessCategory(), context),
                                    child: const LocaleText("register",style: TextStyle(fontWeight: FontWeight.bold),))
                              ],
                            ),
@@ -379,10 +390,10 @@ class _LoginScreenState extends State<LoginScreen> {
                  ),
 
                  //End
-                 Padding(
+                 isLoginTrue? Padding(
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   child: LocaleText("access_denied",style: TextStyle(color: Colors.red.shade900),),
-                ),
+                ): const SizedBox(),
 
 
 
