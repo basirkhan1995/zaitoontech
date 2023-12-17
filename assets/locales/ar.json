@@ -1,0 +1,15 @@
+{
+  "login": "ننوتل",
+  "register": "ثبتول",
+  "yes": "هو",
+  "no": "نه",
+  "username": "کاربر حساب",
+  "password": "رمز",
+  "remember_me": "یاد ولره",
+  "signup_message": "کاربری حساب نلری؟",
+  "login_message": "کاربری حساب لری؟",
+  "access_denied": "کاربری حساب او د عبور کلمه نادرست ده",
+  "zaitoon": "زیتون",
+  "username_required": "خپل یوزر دننه کری",
+  " password_required": " خپل رمز دننه کری"
+}

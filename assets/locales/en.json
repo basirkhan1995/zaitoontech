@@ -1,0 +1,15 @@
+{
+  "login": "LOGIN",
+  "register": "REGISTER",
+  "yes": "Yes",
+  "no": "No",
+  "username": "Username",
+  "password": "Password",
+  "remember_me": "Remember me",
+  "signup_message": "Don't have an account?",
+  "login_message": "Already have an account?",
+  "access_denied": "Access Denied, username or password incorrect",
+  "zaitoon": "Zaitoon",
+  "username_required": "Username is required",
+  " password_required": "Password is required"
+}

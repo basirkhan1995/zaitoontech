@@ -1,0 +1,15 @@
+{
+  "login": "ورود",
+  "register": "حساب جدید",
+  "yes": "بلی",
+  "no": "نه",
+  "username": "کاربر",
+  "password": "کلمه عبور",
+  "remember_me": "مرا به خاطر بسپار",
+  "signup_message": "حساب کاربری ندارید؟",
+  "login_message": "حساب کاربری دارید؟",
+  "access_denied": "حساب کاربر و کلمه عبور نادرست میباشد",
+  "zaitoon": "زیتون",
+  "username_required": " یوزر خود را وارید نمایید",
+  " password_required": " کلمه عبور خود را وارید نمایید"
+}
